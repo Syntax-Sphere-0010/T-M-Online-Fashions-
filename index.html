@@ -30,6 +30,11 @@
             <!-- Top Nav Row -->
             <div class="header-inner">
 
+                <!-- Hamburger Toggle (mobile only) -->
+                <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+
                 <!-- Left Nav -->
                 <nav class="header-nav-left">
                     <a href="#" class="nav-pill active">WOMEN</a>
@@ -51,7 +56,8 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <button class="icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button class="icon-btn" title="Video Call"><i class="fa-solid fa-video"></i></button>
+                    <button class="icon-btn icon-btn-video" title="Video Call"><i
+                            class="fa-solid fa-video"></i></button>
                     <button class="icon-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
                     <button class="icon-btn" title="Wishlist" style="position: relative;">
                         <i class="fa-regular fa-heart"></i>
@@ -60,6 +66,29 @@
                     <button class="icon-btn" title="Account"><i class="fa-regular fa-user"></i></button>
                     <button class="icon-btn" title="Cart"><i class="fa-solid fa-bag-shopping"></i></button>
                 </div>
+            </div>
+
+            <!-- Mobile Nav Drawer -->
+            <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+            <div class="mobile-nav-drawer" id="mobileNavDrawer">
+                <div class="mobile-nav-header">
+                    <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
+                    <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="#" class="mobile-nav-link active">WOMEN</a>
+                    <a href="#" class="mobile-nav-link">MEN</a>
+                    <a href="#" class="mobile-nav-link">BRIDAL</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="#" class="mobile-nav-link">WHAT'S NEW</a>
+                    <a href="#" class="mobile-nav-link">SAREES</a>
+                    <a href="#" class="mobile-nav-link">SALWAR KAMEEZ</a>
+                    <a href="#" class="mobile-nav-link">LEHENGA</a>
+                    <a href="#" class="mobile-nav-link">GOWNS</a>
+                    <a href="#" class="mobile-nav-link">MEN'S WEAR</a>
+                    <a href="#" class="mobile-nav-link">COLLECTION</a>
+                    <a href="#" class="mobile-nav-link">INSTASHOP</a>
+                </nav>
             </div>
 
             <!-- Category Nav -->
@@ -82,6 +111,47 @@
             </nav>
         </header>
     </div><!-- end .sticky-top-bar -->
+
+    <!-- MOBILE TAB BAR (mobile only) -->
+    <div class="mobile-tab-bar">
+        <a href="#" class="mobile-tab active">WOMEN</a>
+        <a href="#" class="mobile-tab">MEN</a>
+        <a href="#" class="mobile-tab">BRIDAL</a>
+    </div>
+
+    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
+    <div class="mobile-category-circles">
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-1.webp" alt="What's New">
+            </div>
+            <span class="category-circle-label">What's New</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-2.webp" alt="Sarees">
+            </div>
+            <span class="category-circle-label">Sarees</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-3.webp" alt="Salwar Kameez">
+            </div>
+            <span class="category-circle-label">Salwar Kameez</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-4.webp" alt="Lehenga">
+            </div>
+            <span class="category-circle-label">Lehenga</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-5.webp" alt="Gowns">
+            </div>
+            <span class="category-circle-label">Gowns</span>
+        </a>
+    </div>
 
     <!-- HERO SLIDER -->
     <section class="hero-slider" id="heroSlider">
@@ -372,12 +442,12 @@
         <div class="new-arrivals-header">
             <h2 class="section-title-alt">Trending Now </h2>
             <div class="carousel-nav">
-                <button class="nav-btn prev" id="arrivalsPrev">&#8249;</button>
-                <button class="nav-btn next" id="arrivalsNext">&#8250;</button>
+                <button class="nav-btn prev" id="trendingPrev">&#8249;</button>
+                <button class="nav-btn next" id="trendingNext">&#8250;</button>
             </div>
         </div>
         <div class="carousel-container">
-            <div class="carousel-track" id="arrivalsTrack">
+            <div class="carousel-track" id="trendingTrack">
                 <!-- Product 1 -->
                 <div class="product-card">
                     <div class="product-media">
