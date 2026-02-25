@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Men's Collection – T&M Online Fashions. Shop premium designer ethnic wear for men.">
+    <link rel="stylesheet" href="./index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Men's Collection – T&M Online Fashions</title>
+</head>
+
+<body>
+
+    <!-- STICKY TOP BAR -->
+    <div class="sticky-top-bar">
+        <div class="promo-bar">
+            <span class="promo-icon">🌐</span>
+            <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
+        </div>
+        <header class="header">
+            <div class="header-inner">
+                <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <nav class="header-nav-left">
+                    <a href="women-collection.html" class="nav-pill">WOMEN</a>
+                    <a href="men-collection.html" class="nav-link-top active"
+                        style="background: var(--text-dark); color: #fff; padding: 6px 18px; border-radius: 4px;">MEN</a>
+                    <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
+                </nav>
+                <div class="logo-wrap">
+                    <div class="logo-icon">✿</div>
+                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                </div>
+                <div class="header-icons">
+                    <div class="currency-selector">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <span>INR</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <button class="icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-btn icon-btn-video" title="Video Call"><i
+                            class="fa-solid fa-video"></i></button>
+                    <button class="icon-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+                    <button class="icon-btn" title="Wishlist" style="position: relative;">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="wishlist-badge" id="wishlistCount">0</span>
+                    </button>
+                    <button class="icon-btn" title="Account"><i class="fa-regular fa-user"></i></button>
+                    <button class="icon-btn" title="Cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                </div>
+            </div>
+
+            <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+            <div class="mobile-nav-drawer" id="mobileNavDrawer">
+                <div class="mobile-nav-header">
+                    <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
+                    <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
+                    <a href="men-collection.html" class="mobile-nav-link active">MEN</a>
+                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
+                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
+                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
+                </nav>
+            </div>
+
+            <!-- Category Nav with Mega Menu -->
+            <nav class="category-nav">
+                <div class="cat-item">
+                    <a href="#" class="cat-link">WHAT'S NEW</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">NEW ARRIVALS</h4>
+                                <a href="sarees-collection.html">Latest Sarees</a>
+                                <a href="lehenga-collection.html">Designer Lehengas</a>
+                                <a href="#">Trending Gowns</a>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Party Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-1.webp" alt="What's New"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="sarees-collection.html" class="cat-link">SAREES</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SAREES</h4>
+                                <a href="sarees-collection.html">Kanchipuram Saree</a>
+                                <a href="sarees-collection.html">Banarasi Saree</a>
+                                <a href="sarees-collection.html">Pure Designer Embroidery Sarees</a>
+                                <a href="sarees-collection.html">Handloom Silks</a>
+                                <a href="sarees-collection.html">Pure Printed Saree</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWARS</h4>
+                                <a href="#">Designer Salwars</a>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-2.webp" alt="Sarees"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">SALWAR KAMEEZ</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWAR KAMEEZ</h4>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                                <a href="#">Straight Cut Suits</a>
+                                <a href="#">Churidar Suits</a>
+                                <a href="#">Unstitched Salwars</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-3.webp" alt="Salwar Kameez"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="lehenga-collection.html" class="cat-link">LEHENGA</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                                <a href="lehenga-collection.html">Embroidered Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/lehenga-1.webp" alt="Lehenga"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">GOWNS</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">GOWNS</h4>
+                                <a href="#">Party Wear Gowns</a>
+                                <a href="#">Designer Gowns</a>
+                                <a href="#">Indo-Western Gowns</a>
+                                <a href="#">Reception Gowns</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-5.webp" alt="Gowns"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="men-collection.html" class="cat-link">MEN'S WEAR</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">MEN'S WEAR</h4>
+                                <a href="men-collection.html">Sherwanis</a>
+                                <a href="men-collection.html">Kurta Pyjama</a>
+                                <a href="men-collection.html">Indo-Western</a>
+                                <a href="men-collection.html">Nehru Jackets</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-6.webp" alt="Men's Wear"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">COLLECTION</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">COLLECTIONS</h4>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Bridal Collection</a>
+                                <a href="#">Party Wear</a>
+                                <a href="#">Casual Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-7.webp" alt="Collection"></div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">INSTASHOP</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">INSTASHOP</h4>
+                                <a href="#">Shop by Instagram</a>
+                                <a href="#">Celeb Styles</a>
+                                <a href="#">Trending Looks</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img"><img src="./images/image-4.webp" alt="Instashop"></div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- COLLECTION PAGE CONTENT -->
+    <section class="collection-page-hero">
+        <h1 class="collection-page-title">Men's Collection</h1>
+        <p class="collection-page-subtitle">Discover our premium range of ethnic wear crafted for the modern gentleman
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="footer-heading">Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="women-collection.html">Women</a></li>
+                    <li><a href="sarees-collection.html">Sarees</a></li>
+                    <li><a href="lehenga-collection.html">Lehenga</a></li>
+                    <li><a href="men-collection.html">Men's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <div class="footer-address">
+                    <strong>T&amp;M Online Fashions</strong><br>
+                    No.24, D'Souza Circle,<br>
+                    Richmond Road, Bangalore &ndash; 560047, India
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 T&amp;M Online Fashions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const hamburger = document.getElementById('hamburgerToggle');
+            const drawer = document.getElementById('mobileNavDrawer');
+            const backdrop = document.getElementById('mobileNavBackdrop');
+            const closeBtn = document.getElementById('mobileNavClose');
+            if (!hamburger || !drawer || !backdrop || !closeBtn) return;
+            function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            hamburger.addEventListener('click', openDrawer);
+            closeBtn.addEventListener('click', closeDrawer);
+            backdrop.addEventListener('click', closeDrawer);
+            window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
+        })();
+    </script>
+</body>
+
+</html>
