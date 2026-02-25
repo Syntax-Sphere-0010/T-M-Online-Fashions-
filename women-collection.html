@@ -51,7 +51,9 @@
                         <span class="wishlist-badge" id="wishlistCount">0</span>
                     </button>
                     <button class="icon-btn" title="Account"><i class="fa-regular fa-user"></i></button>
-                    <button class="icon-btn" title="Cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                    <button class="icon-btn" title="Cart" style="position: relative;"><i
+                            class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
+                            id="cartBadge">0</span></button>
                 </div>
             </div>
 
@@ -247,6 +249,23 @@
         <p class="collection-page-subtitle">Discover our exquisite range of ethnic wear curated for the modern woman</p>
     </section>
 
+    <!-- COLLECTION TOOLBAR -->
+    <div class="collection-toolbar">
+        <span class="collection-result-count" id="resultCount"></span>
+        <div class="collection-sort-wrap">
+            <span class="collection-sort-label">Sort by:</span>
+            <select class="collection-sort-select" id="sortSelect">
+                <option value="default">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name-az">Name: A to Z</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="collection-products-grid" id="collectionProducts"></div>
+
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
@@ -295,6 +314,29 @@
         </div>
     </footer>
 
+    <!-- CART DRAWER -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <span class="cart-drawer-title"><i class="fa-solid fa-bag-shopping"></i> Your Cart</span>
+            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        </div>
+        <div class="cart-drawer-body" id="cartDrawerContent"></div>
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Subtotal</span>
+                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">
+                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
+    <script src="./shopify.config.js"></script>
+    <script src="./shopify-buy.js"></script>
+    <script src="./products-data.js"></script>
+    <script src="./store.js"></script>
     <script>
         // Mobile Nav Toggle
         (function () {
@@ -310,6 +352,18 @@
             backdrop.addEventListener('click', closeDrawer);
             window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
         })();
+
+        // Render products for Women category
+        document.addEventListener('DOMContentLoaded', function () {
+            var products = TMStore.getProductsByCategory('Women');
+            var countEl = document.getElementById('resultCount');
+            if (countEl) countEl.textContent = products.length + ' products';
+            TMStore.renderProductGrid('collectionProducts', products);
+
+            document.getElementById('sortSelect').addEventListener('change', function () {
+                TMStore.renderProductGrid('collectionProducts', products, { sort: this.value });
+            });
+        });
     </script>
 </body>
 

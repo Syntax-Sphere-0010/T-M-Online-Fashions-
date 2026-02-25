@@ -1,0 +1,28 @@
+{
+  "name": "tm-online-fashions",
+  "version": "1.0.0",
+  "description": "T&M Online Fashions — Indian ethnic wear e-commerce storefront",
+  "private": true,
+  "scripts": {
+    "dev": "npx live-server --port=3000 --open=index.html",
+    "shopify:test": "node -e \"require('./shopify.config'); console.log('✅ Shopify config loaded successfully'); console.log('   Configured:', require('./shopify.config').isConfigured);\"",
+    "preinstall": "echo \"📦 Installing T&M Online Fashions dependencies...\""
+  },
+  "dependencies": {
+    "shopify-buy": "^2.22.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "live-server": "^1.2.2"
+  },
+  "keywords": [
+    "shopify",
+    "fashion",
+    "ecommerce",
+    "sarees",
+    "lehenga",
+    "indian-fashion"
+  ],
+  "author": "T&M Online Fashions",
+  "license": "UNLICENSED"
+}

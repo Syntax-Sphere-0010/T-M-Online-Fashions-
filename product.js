@@ -1,120 +1,42 @@
 // ===========================
-//  PRODUCT DATA (All values rendered dynamically from here)
+//  PRODUCT DATA — loaded dynamically from ProductsCatalog
 // ===========================
-const productData = {
-    id: 'GL3812',
-    name: 'Crimson Red Umbrella Style Silk Bridal Lehenga with Elbow Sleeve Blouse',
-    sku: 'GL3812',
-    category: 'Lehenga',
-    subcategory: 'Bridal Lehenga',
-    price: 51500,
-    currency: '₹',
-    deliveryDays: '40 to 45 Working Days',
-    availability: 'In Stock',
-    emiPerMonth: 1811,
-    images: [
-        './images/image-1.webp',
-        './images/image-2.webp',
-        './images/image-3.webp',
-        './images/image-4.webp',
-        './images/image-5.webp',
-    ],
-    sizes: [
-        { label: '--Select--', value: '' },
-        { label: 'XS (34)', value: 'XS' },
-        { label: 'S (36)', value: 'S' },
-        { label: 'M (38)', value: 'M' },
-        { label: 'L (40)', value: 'L' },
-        { label: 'XL (42)', value: 'XL' },
-        { label: 'XXL (44)', value: 'XXL' },
-        { label: 'Custom Size', value: 'CUSTOM' },
-    ],
-    measurementLink: 'Lehenga Measurements',
-    details: {
-        fabric: 'Pure Silk with Zari Work',
-        work: 'Zari, Sequins, Stone, Resham Embroidery',
-        blouse: 'Elbow Sleeve Blouse (Stitched)',
-        dupatta: 'Heavy Embroidered Net Dupatta',
-        lining: 'Cancan + Cotton Inner',
-        weight: '4.5 kg (approx)',
-        occasion: 'Wedding, Bridal, Reception',
-        washCare: 'Dry Clean Only',
-        deliveryTime: '40–45 Working Days (Custom Made)',
-    },
-    description: `<p>Be the most stunning bride in this magnificent <strong>Crimson Red Umbrella Style Silk Bridal Lehenga</strong>. Crafted from the finest pure silk, this lehenga features an umbrella cut silhouette that creates a regal and graceful drape.</p>
-<p>The entire ensemble is adorned with rich <em>zari, sequins, stone, and resham embroidery</em> that shimmers beautifully under every light. The elbow sleeve blouse adds a classic touch to the contemporary design.</p>
-<ul>
-    <li>Pure silk fabric with rich zari weaving</li>
-    <li>Umbrella cut for a royal silhouette</li>
-    <li>Elbow sleeve stitched blouse included</li>
-    <li>Heavy embroidered net dupatta included</li>
-    <li>Cancan and cotton inner lining for comfort</li>
-    <li>Can be customised to your exact measurements</li>
-</ul>
-<p>This lehenga is crafted to order — made exclusively for you with meticulous attention to detail.</p>`,
-    shippingInfo: `<p><strong>Free Worldwide Shipping</strong> on all orders.</p>
-<ul>
-    <li><strong>Domestic (India):</strong> 40–45 Working Days (Made to Order)</li>
-    <li><strong>International:</strong> 45–55 Working Days</li>
-    <li>Tracking information provided via email & SMS</li>
-    <li>Secure packaging to ensure safe delivery</li>
-    <li>COD available for select pincodes in India</li>
-</ul>
-<p><strong>Returns & Exchange:</strong> We accept returns within 7 days of delivery. Items must be unused and in original packaging. Custom-made products are eligible for exchange only.</p>
-<p>For assistance, reach out via WhatsApp or email.</p>`,
-};
+function getProductFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id');
+    if (id && window.ProductsCatalog) {
+        var found = window.ProductsCatalog.find(function (p) { return p.id === id; });
+        if (found) return found;
+    }
+    // Fallback: return first product in catalog
+    if (window.ProductsCatalog && window.ProductsCatalog.length > 0) {
+        return window.ProductsCatalog[0];
+    }
+    return null;
+}
 
-// Related Products Data
-const relatedProducts = [
-    {
-        id: 'GL3810',
-        name: 'Beige Sequins Embroidered Net Promotional Lehenga with Resham and Stone',
-        price: 32500,
-        image: './images/image-4.webp',
-        link: 'product.html',
-    },
-    {
-        id: 'GL3815',
-        name: 'Red Crepe Ready To Wear Saree with Silk Blouse and Embroidery',
-        price: 15990,
-        image: './images/image-1.webp',
-        link: 'product.html',
-    },
-    {
-        id: 'GL3820',
-        name: 'Black Lycra Ready To Wear Saree with Embroidered Sleeveless Blouse',
-        price: 18490,
-        image: './images/image-2.webp',
-        link: 'product.html',
-    },
-    {
-        id: 'GL3825',
-        name: 'Blush Pink Sequins Embroidered Georgette Lehenga with Ruffle Dupatta',
-        price: 42000,
-        image: './images/image-6.webp',
-        link: 'product.html',
-    },
-    {
-        id: 'GL3830',
-        name: 'Emerald Green Zari Embroidered Silk Anarkali Suit with Network Dupatta',
-        price: 21500,
-        image: './images/image-7.webp',
-        link: 'product.html',
-    },
-    {
-        id: 'GL3835',
-        name: 'Orange Sequins Embroidered Net Lehenga with Resham and Stone Work',
-        price: 29900,
-        image: './images/image-5.webp',
-        link: 'product.html',
-    },
-];
+function getRelatedProducts(product) {
+    if (!product || !window.ProductsCatalog) return [];
+    return window.ProductsCatalog.filter(function (p) {
+        return p.id !== product.id && (p.category === product.category || p.subcategory === product.subcategory);
+    }).slice(0, 6).map(function (p) {
+        return {
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            currency: p.currency || '₹',
+            image: p.images[0],
+            link: 'product.html?id=' + p.id,
+        };
+    });
+}
 
 // ===========================
 //  UTILITY FUNCTIONS
 // ===========================
-function formatPrice(amount, currency = '₹') {
-    return `${currency} ${amount.toLocaleString('en-IN')}`;
+function formatPrice(amount, currency) {
+    currency = currency || '₹';
+    return currency + ' ' + Number(amount).toLocaleString('en-IN');
 }
 
 // ===========================
@@ -304,15 +226,46 @@ function renderProductInfo(product) {
         }
     });
 
-    // Add to cart animation
+    // Add to cart — wired to TMStore
     document.getElementById('pdpAddToCart').addEventListener('click', function () {
+        var sizeSelect = document.getElementById('pdpSizeSelect');
+        var selectedSize = sizeSelect ? sizeSelect.value : 'FREE';
+        if (!selectedSize) {
+            sizeSelect.focus();
+            sizeSelect.style.borderColor = '#e53935';
+            setTimeout(function () { sizeSelect.style.borderColor = ''; }, 2000);
+            return;
+        }
+        if (window.TMStore) {
+            window.TMStore.addToCart(product.id, selectedSize, 1);
+        }
         this.classList.add('added');
         this.innerHTML = '<i class="fa-solid fa-check"></i> ADDED TO CART';
-        setTimeout(() => {
-            this.classList.remove('added');
-            this.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> ADD TO CART';
+        var btn = this;
+        setTimeout(function () {
+            btn.classList.remove('added');
+            btn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> ADD TO CART';
         }, 2000);
     });
+
+    // Buy Now — add to cart + go to checkout
+    var buyNowBtn = document.getElementById('pdpBuyNow');
+    if (buyNowBtn) {
+        buyNowBtn.addEventListener('click', function () {
+            var sizeSelect = document.getElementById('pdpSizeSelect');
+            var selectedSize = sizeSelect ? sizeSelect.value : 'FREE';
+            if (!selectedSize) {
+                sizeSelect.focus();
+                sizeSelect.style.borderColor = '#e53935';
+                setTimeout(function () { sizeSelect.style.borderColor = ''; }, 2000);
+                return;
+            }
+            if (window.TMStore) {
+                window.TMStore.addToCart(product.id, selectedSize, 1);
+                window.TMStore.goToCheckout();
+            }
+        });
+    }
 
     // Pincode check
     document.getElementById('pdpPincodeBtn').addEventListener('click', function () {
@@ -497,10 +450,22 @@ function renderRelatedProducts(products) {
 //  INITIALIZE PAGE
 // ===========================
 document.addEventListener('DOMContentLoaded', function () {
+    var productData = getProductFromUrl();
+    if (!productData) {
+        document.body.innerHTML = '<div style="text-align:center;padding:100px 20px;"><h2>Product Not Found</h2><p>The product you are looking for does not exist.</p><a href="index.html" style="color:#b8860b;">Back to Home</a></div>';
+        return;
+    }
+
+    // Update page title
+    document.title = productData.name + ' – T&M Online Fashions';
+
     renderBreadcrumb(productData);
     renderGallery(productData);
     renderProductInfo(productData);
     renderTabs(productData);
-    renderRelatedProducts(relatedProducts);
+
+    var related = getRelatedProducts(productData);
+    renderRelatedProducts(related);
+
     window.scrollTo({ top: 0, behavior: 'auto' });
 });

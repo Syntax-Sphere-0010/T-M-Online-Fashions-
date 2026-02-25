@@ -64,7 +64,9 @@
                         <span class="wishlist-badge" id="wishlistCount">0</span>
                     </button>
                     <button class="icon-btn" title="Account"><i class="fa-regular fa-user"></i></button>
-                    <button class="icon-btn" title="Cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                    <button class="icon-btn" title="Cart" style="position: relative;"><i
+                            class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
+                            id="cartBadge">0</span></button>
                 </div>
             </div>
 
@@ -361,6 +363,29 @@
         </div>
     </footer>
 
+    <!-- CART DRAWER -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <span class="cart-drawer-title"><i class="fa-solid fa-bag-shopping"></i> Your Cart</span>
+            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        </div>
+        <div class="cart-drawer-body" id="cartDrawerContent"></div>
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Subtotal</span>
+                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">
+                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
+    <script src="./shopify.config.js"></script>
+    <script src="./shopify-buy.js"></script>
+    <script src="./products-data.js"></script>
+    <script src="./store.js"></script>
     <script src="./product.js"></script>
 </body>
 
