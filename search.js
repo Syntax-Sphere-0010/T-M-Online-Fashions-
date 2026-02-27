@@ -6,49 +6,78 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
-        var overlay = document.getElementById('searchOverlay');
-        var closeBtn = document.getElementById('searchOverlayClose');
-        var input = document.getElementById('searchInput');
-        var resultsEl = document.getElementById('searchResults');
-        if (!overlay) return;
+        // Find all search overlays on the page (in case there are duplicates or mobile/desktop versions)
+        var overlays = document.querySelectorAll('.search-overlay');
 
-        // Close handler
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function () {
-                overlay.classList.remove('open');
-                if (input) input.value = '';
-                if (resultsEl) resultsEl.innerHTML = '';
+        // Find all search trigger buttons
+        var searchBtns = document.querySelectorAll('[title="Search"], .icon-btn-search');
+
+        searchBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Open the first overlay found
+                if (overlays.length > 0) {
+                    overlays[0].classList.add('open');
+                    var input = overlays[0].querySelector('.search-overlay-input');
+                    if (input) setTimeout(() => input.focus(), 100);
+                }
             });
-        }
+        });
 
-        // Escape key closes
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && overlay.classList.contains('open')) {
-                overlay.classList.remove('open');
-                if (input) input.value = '';
-                if (resultsEl) resultsEl.innerHTML = '';
+        overlays.forEach(function (overlay) {
+            var closeBtn = overlay.querySelector('.search-overlay-close');
+            var input = overlay.querySelector('.search-overlay-input');
+            var resultsEl = overlay.querySelector('.search-overlay-results');
+
+            // Close handler
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    overlay.classList.remove('open');
+                    if (input) input.value = '';
+                    if (resultsEl) resultsEl.innerHTML = '';
+                });
+            }
+
+            // Escape key closes
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                    overlay.classList.remove('open');
+                    if (input) input.value = '';
+                    if (resultsEl) resultsEl.innerHTML = '';
+                }
+            });
+
+
+
+            // Search on typing
+            if (input && resultsEl) {
+                var debounceTimer;
+                input.addEventListener('input', function () {
+                    clearTimeout(debounceTimer);
+                    var query = this.value.trim().toLowerCase();
+                    debounceTimer = setTimeout(function () {
+                        doSearch(query, resultsEl);
+                    }, 250);
+                });
             }
         });
 
-        // Auto-focus input when overlay opens
-        var observer = new MutationObserver(function () {
-            if (overlay.classList.contains('open') && input) {
-                input.focus();
-            }
-        });
-        observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+        // Close overlay on outside click
+        document.addEventListener('click', function (e) {
+            var openOverlay = Array.from(overlays).find(o => o.classList.contains('open'));
+            if (!openOverlay) return;
 
-        // Search on typing
-        if (input && resultsEl) {
-            var debounceTimer;
-            input.addEventListener('input', function () {
-                clearTimeout(debounceTimer);
-                var query = this.value.trim().toLowerCase();
-                debounceTimer = setTimeout(function () {
-                    doSearch(query, resultsEl);
-                }, 250);
-            });
-        }
+            if (openOverlay.contains(e.target)) return;
+
+            var isSearchBtn = Array.from(searchBtns).some(btn => btn.contains(e.target));
+            if (isSearchBtn) return;
+
+            openOverlay.classList.remove('open');
+            var input = openOverlay.querySelector('.search-overlay-input');
+            var resultsEl = openOverlay.querySelector('.search-overlay-results');
+            if (input) input.value = '';
+            if (resultsEl) resultsEl.innerHTML = '';
+        });
     });
 
     function doSearch(query, resultsEl) {
@@ -73,13 +102,17 @@
 
         var html = '';
         matches.forEach(function (p) {
-            html += '<a class="search-result-item" href="product.html?id=' + p.id + '">' +
-                '<img class="search-result-img" src="' + p.images[0] + '" alt="' + p.name + '">' +
-                '<div class="search-result-info">' +
-                '<div class="search-result-name">' + p.name + '</div>' +
-                '<div class="search-result-price">\u20b9 ' + Number(p.price).toLocaleString('en-IN') + '</div>' +
-                '</div>' +
-                '</a>';
+            // Updated item template for image + text + category info
+            var imgUrl = p.images && p.images.length > 0 ? p.images[0] : './images/placeholder.webp';
+            html += '<a class="search-suggestion-item" href="product.html?id=' + p.id + '">';
+            html += '  <div class="search-suggestion-img">';
+            html += '    <img src="' + imgUrl + '" alt="' + p.name + '">';
+            html += '  </div>';
+            html += '  <div class="search-suggestion-text">';
+            html += '    <div class="search-suggestion-name">' + p.name.toLowerCase() + '</div>';
+            html += '    <div class="search-suggestion-category">in ' + p.category + ' ' + p.subcategory + '</div>';
+            html += '  </div>';
+            html += '</a>';
         });
 
         resultsEl.innerHTML = html;

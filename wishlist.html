@@ -15,26 +15,39 @@
 
 <body>
 
-    <!-- STICKY TOP BAR -->
+    <!-- STICKY TOP BAR: Promo + Header -->
     <div class="sticky-top-bar">
+
+        <!-- PROMO BAR -->
         <div class="promo-bar">
             <span class="promo-icon">🌐</span>
             <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
         </div>
+
+        <!-- HEADER -->
         <header class="header">
+            <!-- Top Nav Row -->
             <div class="header-inner">
+
+                <!-- Hamburger Toggle (mobile only) -->
                 <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
                     <span></span><span></span><span></span>
                 </button>
+
+                <!-- Left Nav -->
                 <nav class="header-nav-left">
                     <a href="women-collection.html" class="nav-pill active">WOMEN</a>
                     <a href="men-collection.html" class="nav-link-top">MEN</a>
                     <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
                 </nav>
-                <div class="logo-wrap">
+
+                <!-- Center Logo -->
+                <div class="logo-wrap" style="cursor: pointer;" onclick="window.location.href='index.html'">
                     <div class="logo-icon">✿</div>
-                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                    <div class="logo-text">T&amp;M Online Fashions</div>
                 </div>
+
+                <!-- Right Icons -->
                 <div class="header-icons">
                     <div class="currency-selector">
                         <i class="fa-regular fa-credit-card"></i>
@@ -48,12 +61,14 @@
                         onclick="window.location.href='video-shopping.html'"><i class="fa-solid fa-video"></i><span
                             class="icon-tooltip">Video Shopping</span></button>
                     <button class="icon-btn" title="WhatsApp" onclick="window.location.href='whatsapp.html'"><i
-                            class="fa-brands fa-whatsapp"></i><span class="icon-tooltip">+91 83419 52903</span></button>
-                    <button class="icon-btn" title="Wishlist" style="position: relative;">
+                            class="fa-brands fa-whatsapp"></i><span class="whatsapp-number">+91 83419
+                            52903</span></button>
+                    <button class="icon-btn" title="Wishlist" style="position: relative;"
+                        onclick="window.location.href='wishlist.html'">
                         <i class="fa-regular fa-heart"></i>
                         <span class="wishlist-badge" id="wishlistCount">0</span>
                     </button>
-                    <button class="icon-btn" title="Account" onclick="window.location.href='login.html'"><i
+                    <button class="icon-btn" title="Account" onclick="openLoginModal()"><i
                             class="fa-regular fa-user"></i></button>
                     <button class="icon-btn" title="Cart" style="position: relative;"><i
                             class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
@@ -61,27 +76,334 @@
                 </div>
             </div>
 
+            <!-- Mobile Nav Drawer -->
             <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
             <div class="mobile-nav-drawer" id="mobileNavDrawer">
                 <div class="mobile-nav-header">
                     <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
                     <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
                 </div>
-                <nav class="mobile-nav-links">
-                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN</a>
-                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
-                    <hr class="mobile-nav-divider">
-                    <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
-                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
-                    <hr class="mobile-nav-divider">
-                    <a href="video-shopping.html" class="mobile-nav-link">VIDEO SHOPPING</a>
-                    <a href="wishlist.html" class="mobile-nav-link active">WISHLIST</a>
-                    <a href="login.html" class="mobile-nav-link">MY ACCOUNT</a>
+<nav class="mobile-nav-links">
+                    <!-- Top Auth Banner -->
+                    <div class="mobile-nav-top-banner">
+                        <p>Ready to shop great deals?</p>
+                        <a href="#" class="mobile-nav-auth-btn" onclick="openLoginModal(); closeDrawer && closeDrawer();">
+                            Sign In / Register <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- My Orders -->
+                    <a href="#" class="mobile-nav-orders-link">
+                        My Orders <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+
+                    <!-- Accordion Menu -->
+                    <ul class="accordion-menu">
+                        <!-- WHAT'S NEW -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> WHAT'S NEW
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> LATEST SAREES</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGAS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> TRENDING GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> FESTIVE COLLECTION</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SAREES -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SAREES
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KANCHIPURAM SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BANARASI SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE HANDLOOM SILK SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE PRINTED SAREE</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SALWAR KAMEEZ -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SALWAR KAMEEZ
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> ANARKALI SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PALAZZO SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> STRAIGHT CUT SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> CHURIDAR SUITS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- LEHENGA -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> LEHENGA
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BRIDAL LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGA</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- GOWNS -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> GOWNS
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN GOWNS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- MEN'S WEAR -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> MEN'S WEAR
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> SHERWANIS</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KURTA PYJAMA</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> NEHRU JACKETS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Utilities -->
+                         <li class="accordion-item" style="margin-top: 15px;">
+                            <a href="video-shopping.html" class="accordion-header" style="text-decoration:none;"><i class="fa-solid fa-video"></i> VIDEO SHOPPING</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="wishlist.html" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-heart"></i> WISHLIST</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="#" onclick="openLoginModal(); closeDrawer && closeDrawer();" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-user"></i> MY ACCOUNT</a>
+                        </li>
+                    </ul>
                 </nav>
             </div>
+
+            <!-- Category Nav with Mega Menu -->
+            <nav class="category-nav">
+                <div class="cat-item">
+                    <a href="#" class="cat-link">WHAT'S NEW</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">NEW ARRIVALS</h4>
+                                <a href="sarees-collection.html">Latest Sarees</a>
+                                <a href="lehenga-collection.html">Designer Lehengas</a>
+                                <a href="#">Trending Gowns</a>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Party Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-1.webp" alt="What's New">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="sarees-collection.html" class="cat-link">SAREES</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SAREES</h4>
+                                <a href="sarees-collection.html">Kanchipuram Saree</a>
+                                <a href="sarees-collection.html">Banarasi Saree</a>
+                                <a href="sarees-collection.html">Pure Designer Embroidery Sarees</a>
+                                <a href="sarees-collection.html">Handloom Silks</a>
+                                <a href="sarees-collection.html">Pure Printed Saree</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWARS</h4>
+                                <a href="#">Designer Salwars</a>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-2.webp" alt="Sarees">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">SALWAR KAMEEZ</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWAR KAMEEZ</h4>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                                <a href="#">Straight Cut Suits</a>
+                                <a href="#">Churidar Suits</a>
+                                <a href="#">Unstitched Salwars</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-3.webp" alt="Salwar Kameez">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="lehenga-collection.html" class="cat-link">LEHENGA</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                                <a href="lehenga-collection.html">Embroidered Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/lehenga-1.webp" alt="Lehenga">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">GOWNS</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">GOWNS</h4>
+                                <a href="#">Party Wear Gowns</a>
+                                <a href="#">Designer Gowns</a>
+                                <a href="#">Indo-Western Gowns</a>
+                                <a href="#">Reception Gowns</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-5.webp" alt="Gowns">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="men-collection.html" class="cat-link">MEN'S WEAR</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">MEN'S WEAR</h4>
+                                <a href="men-collection.html">Sherwanis</a>
+                                <a href="men-collection.html">Kurta Pyjama</a>
+                                <a href="men-collection.html">Indo-Western</a>
+                                <a href="men-collection.html">Nehru Jackets</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-6.webp" alt="Men's Wear">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">COLLECTION</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">COLLECTIONS</h4>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Bridal Collection</a>
+                                <a href="#">Party Wear</a>
+                                <a href="#">Casual Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-7.webp" alt="Collection">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">INSTASHOP</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">INSTASHOP</h4>
+                                <a href="#">Shop by Instagram</a>
+                                <a href="#">Celeb Styles</a>
+                                <a href="#">Trending Looks</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-4.webp" alt="Instashop">
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
+    </div><!-- end .sticky-top-bar -->
+
+    <!-- MOBILE TAB BAR (mobile only) -->
+    <div class="mobile-tab-bar">
+        <a href="women-collection.html" class="mobile-tab active">WOMEN</a>
+        <a href="men-collection.html" class="mobile-tab">MEN</a>
+        <a href="sarees-collection.html" class="mobile-tab">BRIDAL</a>
+    </div>
+
+    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
+    <div class="mobile-category-circles">
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-1.webp" alt="What's New">
+            </div>
+            <span class="category-circle-label">What's New</span>
+        </a>
+        <a href="sarees-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-2.webp" alt="Sarees">
+            </div>
+            <span class="category-circle-label">Sarees</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-3.webp" alt="Salwar Kameez">
+            </div>
+            <span class="category-circle-label">Salwar Kameez</span>
+        </a>
+        <a href="lehenga-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-4.webp" alt="Lehenga">
+            </div>
+            <span class="category-circle-label">Lehenga</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-5.webp" alt="Gowns">
+            </div>
+            <span class="category-circle-label">Gowns</span>
+        </a>
     </div>
 
     <!-- WISHLIST HERO -->
@@ -247,6 +569,154 @@
             });
         }
     </script>
-</body>
+\n    <!-- LOGIN MODAL -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal-container">
+            <button class="login-modal-close" onclick="closeLoginModal()">&times;</button>
+            <div class="login-modal-image">
+                <img src="./images/banner-3.jpg" alt="Login">
+            </div>
+                        <div class="login-modal-content">
+                <!-- Sign In Form -->
+                <div id="signInSection">
+                    <div class="login-header">
+                        <h2>Sign In</h2>
+                        <p>Welcome back! Please sign in to your account.</p>
+                    </div>
+                    <form class="login-form" onsubmit="event.preventDefault(); alert('Login successful!'); closeLoginModal();">
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN IN</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Don't have an account? <a href="#" onclick="toggleSignup(event)">Sign Up</a>
+                    </div>
+                </div>
 
-</html>
+                <!-- Sign Up Form -->
+                <div id="signUpSection" style="display: none;">
+                    <div class="login-header">
+                        <h2>Create Account</h2>
+                        <p>Join us today to unlock exclusive benefits.</p>
+                    </div>
+                    <form class="login-form" onsubmit="event.preventDefault(); alert('Registration successful!'); toggleSignup(event);">
+                        <div class="login-form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN UP</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Already have an account? <a href="#" onclick="toggleSignup(event)">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="login-social-grid">
+                    <button class="social-login-btn"><i class="fa-brands fa-google"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-x-twitter"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-facebook-f"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+\n    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        // Close modal on outside click
+        window.onclick = function (event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeLoginModal();
+            }
+        }
+    </script>
+    <script src="./index.js"></script>
+
+    <script>
+        function toggleSignup(e) {
+            if (e) e.preventDefault();
+            const signIn = document.getElementById('signInSection');
+            const signUp = document.getElementById('signUpSection');
+            if (signIn.style.display === 'none') {
+                signIn.style.display = 'block';
+                signUp.style.display = 'none';
+            } else {
+                signIn.style.display = 'none';
+                signUp.style.display = 'block';
+            }
+        }
+    </script>
+\n    <!-- Accordion Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // Prevent default if it's a button
+                    if (this.tagName.toLowerCase() === 'button') {
+                        e.preventDefault();
+                    } else {
+                        // If it's a direct link without children, let it navigate
+                        return;
+                    }
+
+                    const item = this.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = this.querySelector('i.fa-plus, i.fa-minus');
+                    
+                    // Toggle current item
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                        if(icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    } else {
+                        // Optional: Close other open items
+                        document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                            openItem.classList.remove('active');
+                            openItem.querySelector('.accordion-content').style.maxHeight = null;
+                            const openIcon = openItem.querySelector('.accordion-header i.fa-minus');
+                            if(openIcon) {
+                                openIcon.classList.remove('fa-minus');
+                                openIcon.classList.add('fa-plus');
+                            }
+                        });
+                        
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if(icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>

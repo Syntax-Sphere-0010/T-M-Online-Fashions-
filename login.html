@@ -93,6 +93,54 @@
             }
         });
     </script>
-</body>
+    <!-- Accordion Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // Prevent default if it's a button
+                    if (this.tagName.toLowerCase() === 'button') {
+                        e.preventDefault();
+                    } else {
+                        // If it's a direct link without children, let it navigate
+                        return;
+                    }
 
-</html>
+                    const item = this.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = this.querySelector('i.fa-plus, i.fa-minus');
+                    
+                    // Toggle current item
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                        if(icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    } else {
+                        // Optional: Close other open items
+                        document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                            openItem.classList.remove('active');
+                            openItem.querySelector('.accordion-content').style.maxHeight = null;
+                            const openIcon = openItem.querySelector('.accordion-header i.fa-minus');
+                            if(openIcon) {
+                                openIcon.classList.remove('fa-minus');
+                                openIcon.classList.add('fa-plus');
+                            }
+                        });
+                        
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if(icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>

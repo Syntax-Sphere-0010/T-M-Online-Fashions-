@@ -31,7 +31,7 @@
                     <a href="men-collection.html" class="nav-link-top">MEN</a>
                     <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
                 </nav>
-                <div class="logo-wrap">
+                <div class="logo-wrap" style="cursor: pointer;" onclick="window.location.href='index.html'">
                     <div class="logo-icon">✿</div>
                     <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
                 </div>
@@ -69,14 +69,122 @@
                     <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
                     <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
                 </div>
-                <nav class="mobile-nav-links">
-                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN</a>
-                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
-                    <hr class="mobile-nav-divider">
-                    <a href="sarees-collection.html" class="mobile-nav-link active">SAREES</a>
-                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
+<nav class="mobile-nav-links">
+                    <!-- Top Auth Banner -->
+                    <div class="mobile-nav-top-banner">
+                        <p>Ready to shop great deals?</p>
+                        <a href="#" class="mobile-nav-auth-btn" onclick="openLoginModal(); closeDrawer && closeDrawer();">
+                            Sign In / Register <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- My Orders -->
+                    <a href="#" class="mobile-nav-orders-link">
+                        My Orders <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+
+                    <!-- Accordion Menu -->
+                    <ul class="accordion-menu">
+                        <!-- WHAT'S NEW -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> WHAT'S NEW
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> LATEST SAREES</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGAS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> TRENDING GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> FESTIVE COLLECTION</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SAREES -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SAREES
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KANCHIPURAM SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BANARASI SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE HANDLOOM SILK SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE PRINTED SAREE</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SALWAR KAMEEZ -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SALWAR KAMEEZ
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> ANARKALI SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PALAZZO SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> STRAIGHT CUT SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> CHURIDAR SUITS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- LEHENGA -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> LEHENGA
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BRIDAL LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGA</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- GOWNS -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> GOWNS
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN GOWNS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- MEN'S WEAR -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> MEN'S WEAR
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> SHERWANIS</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KURTA PYJAMA</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> NEHRU JACKETS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Utilities -->
+                         <li class="accordion-item" style="margin-top: 15px;">
+                            <a href="video-shopping.html" class="accordion-header" style="text-decoration:none;"><i class="fa-solid fa-video"></i> VIDEO SHOPPING</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="wishlist.html" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-heart"></i> WISHLIST</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="#" onclick="openLoginModal(); closeDrawer && closeDrawer();" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-user"></i> MY ACCOUNT</a>
+                        </li>
+                    </ul>
                 </nav>
             </div>
 
@@ -453,6 +561,54 @@
             }
         }
     </script>
-</body>
+    <!-- Accordion Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // Prevent default if it's a button
+                    if (this.tagName.toLowerCase() === 'button') {
+                        e.preventDefault();
+                    } else {
+                        // If it's a direct link without children, let it navigate
+                        return;
+                    }
 
-</html>
+                    const item = this.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = this.querySelector('i.fa-plus, i.fa-minus');
+                    
+                    // Toggle current item
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                        if(icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    } else {
+                        // Optional: Close other open items
+                        document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                            openItem.classList.remove('active');
+                            openItem.querySelector('.accordion-content').style.maxHeight = null;
+                            const openIcon = openItem.querySelector('.accordion-header i.fa-minus');
+                            if(openIcon) {
+                                openIcon.classList.remove('fa-minus');
+                                openIcon.classList.add('fa-plus');
+                            }
+                        });
+                        
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if(icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>

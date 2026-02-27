@@ -16,26 +16,39 @@
 
 <body>
 
-    <!-- STICKY TOP BAR -->
+    <!-- STICKY TOP BAR: Promo + Header -->
     <div class="sticky-top-bar">
+
+        <!-- PROMO BAR -->
         <div class="promo-bar">
             <span class="promo-icon">🌐</span>
             <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
         </div>
+
+        <!-- HEADER -->
         <header class="header">
+            <!-- Top Nav Row -->
             <div class="header-inner">
+
+                <!-- Hamburger Toggle (mobile only) -->
                 <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
                     <span></span><span></span><span></span>
                 </button>
+
+                <!-- Left Nav -->
                 <nav class="header-nav-left">
                     <a href="women-collection.html" class="nav-pill active">WOMEN</a>
                     <a href="men-collection.html" class="nav-link-top">MEN</a>
                     <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
                 </nav>
-                <div class="logo-wrap">
+
+                <!-- Center Logo -->
+                <div class="logo-wrap" style="cursor: pointer;" onclick="window.location.href='index.html'">
                     <div class="logo-icon">✿</div>
-                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                    <div class="logo-text">T&amp;M Online Fashions</div>
                 </div>
+
+                <!-- Right Icons -->
                 <div class="header-icons">
                     <div class="currency-selector">
                         <i class="fa-regular fa-credit-card"></i>
@@ -45,16 +58,18 @@
                     <button class="icon-btn" title="Search"
                         onclick="document.getElementById('searchOverlay').classList.add('open')"><i
                             class="fa-solid fa-magnifying-glass"></i><span class="icon-tooltip">Search</span></button>
-                    <button class="icon-btn icon-btn-video" title="Video Call"><i class="fa-solid fa-video"></i><span
+                    <button class="icon-btn icon-btn-video" title="Video Call"
+                        onclick="window.location.href='video-shopping.html'"><i class="fa-solid fa-video"></i><span
                             class="icon-tooltip">Video Shopping</span></button>
                     <button class="icon-btn" title="WhatsApp" onclick="window.location.href='whatsapp.html'"><i
-                            class="fa-brands fa-whatsapp"></i><span class="icon-tooltip">+91 83419 52903</span></button>
+                            class="fa-brands fa-whatsapp"></i><span class="whatsapp-number">+91 83419
+                            52903</span></button>
                     <button class="icon-btn" title="Wishlist" style="position: relative;"
                         onclick="window.location.href='wishlist.html'">
                         <i class="fa-regular fa-heart"></i>
                         <span class="wishlist-badge" id="wishlistCount">0</span>
                     </button>
-                    <button class="icon-btn" title="Account" onclick="window.location.href='login.html'"><i
+                    <button class="icon-btn" title="Account" onclick="openLoginModal()"><i
                             class="fa-regular fa-user"></i></button>
                     <button class="icon-btn" title="Cart" style="position: relative;"><i
                             class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
@@ -62,27 +77,334 @@
                 </div>
             </div>
 
+            <!-- Mobile Nav Drawer -->
             <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
             <div class="mobile-nav-drawer" id="mobileNavDrawer">
                 <div class="mobile-nav-header">
                     <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
                     <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
                 </div>
-                <nav class="mobile-nav-links">
-                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN</a>
-                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
-                    <hr class="mobile-nav-divider">
-                    <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
-                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
-                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
-                    <hr class="mobile-nav-divider">
-                    <a href="video-shopping.html" class="mobile-nav-link active">VIDEO SHOPPING</a>
-                    <a href="wishlist.html" class="mobile-nav-link">WISHLIST</a>
-                    <a href="login.html" class="mobile-nav-link">MY ACCOUNT</a>
+<nav class="mobile-nav-links">
+                    <!-- Top Auth Banner -->
+                    <div class="mobile-nav-top-banner">
+                        <p>Ready to shop great deals?</p>
+                        <a href="#" class="mobile-nav-auth-btn" onclick="openLoginModal(); closeDrawer && closeDrawer();">
+                            Sign In / Register <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- My Orders -->
+                    <a href="#" class="mobile-nav-orders-link">
+                        My Orders <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+
+                    <!-- Accordion Menu -->
+                    <ul class="accordion-menu">
+                        <!-- WHAT'S NEW -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> WHAT'S NEW
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> LATEST SAREES</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGAS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> TRENDING GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> FESTIVE COLLECTION</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SAREES -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SAREES
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KANCHIPURAM SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BANARASI SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE HANDLOOM SILK SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE PRINTED SAREE</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SALWAR KAMEEZ -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> SALWAR KAMEEZ
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> ANARKALI SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PALAZZO SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> STRAIGHT CUT SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> CHURIDAR SUITS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- LEHENGA -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> LEHENGA
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BRIDAL LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGA</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- GOWNS -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> GOWNS
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN GOWNS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- MEN'S WEAR -->
+                        <li class="accordion-item">
+                            <button class="accordion-header">
+                                <i class="fa-solid fa-plus"></i> MEN'S WEAR
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> SHERWANIS</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KURTA PYJAMA</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> NEHRU JACKETS</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Utilities -->
+                         <li class="accordion-item" style="margin-top: 15px;">
+                            <a href="video-shopping.html" class="accordion-header" style="text-decoration:none;"><i class="fa-solid fa-video"></i> VIDEO SHOPPING</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="wishlist.html" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-heart"></i> WISHLIST</a>
+                        </li>
+                        <li class="accordion-item">
+                            <a href="#" onclick="openLoginModal(); closeDrawer && closeDrawer();" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-user"></i> MY ACCOUNT</a>
+                        </li>
+                    </ul>
                 </nav>
             </div>
+
+            <!-- Category Nav with Mega Menu -->
+            <nav class="category-nav">
+                <div class="cat-item">
+                    <a href="#" class="cat-link">WHAT'S NEW</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">NEW ARRIVALS</h4>
+                                <a href="sarees-collection.html">Latest Sarees</a>
+                                <a href="lehenga-collection.html">Designer Lehengas</a>
+                                <a href="#">Trending Gowns</a>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Party Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-1.webp" alt="What's New">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="sarees-collection.html" class="cat-link">SAREES</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SAREES</h4>
+                                <a href="sarees-collection.html">Kanchipuram Saree</a>
+                                <a href="sarees-collection.html">Banarasi Saree</a>
+                                <a href="sarees-collection.html">Pure Designer Embroidery Sarees</a>
+                                <a href="sarees-collection.html">Handloom Silks</a>
+                                <a href="sarees-collection.html">Pure Printed Saree</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWARS</h4>
+                                <a href="#">Designer Salwars</a>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-2.webp" alt="Sarees">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">SALWAR KAMEEZ</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">SALWAR KAMEEZ</h4>
+                                <a href="#">Anarkali Suits</a>
+                                <a href="#">Palazzo Suits</a>
+                                <a href="#">Straight Cut Suits</a>
+                                <a href="#">Churidar Suits</a>
+                                <a href="#">Unstitched Salwars</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-3.webp" alt="Salwar Kameez">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="lehenga-collection.html" class="cat-link">LEHENGA</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">LEHENGAS</h4>
+                                <a href="lehenga-collection.html">Bridal Lehenga</a>
+                                <a href="lehenga-collection.html">Party Wear Lehenga</a>
+                                <a href="lehenga-collection.html">Designer Lehenga</a>
+                                <a href="lehenga-collection.html">Embroidered Lehenga</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/lehenga-1.webp" alt="Lehenga">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">GOWNS</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">GOWNS</h4>
+                                <a href="#">Party Wear Gowns</a>
+                                <a href="#">Designer Gowns</a>
+                                <a href="#">Indo-Western Gowns</a>
+                                <a href="#">Reception Gowns</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-5.webp" alt="Gowns">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="men-collection.html" class="cat-link">MEN'S WEAR</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">MEN'S WEAR</h4>
+                                <a href="men-collection.html">Sherwanis</a>
+                                <a href="men-collection.html">Kurta Pyjama</a>
+                                <a href="men-collection.html">Indo-Western</a>
+                                <a href="men-collection.html">Nehru Jackets</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-6.webp" alt="Men's Wear">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">COLLECTION</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">COLLECTIONS</h4>
+                                <a href="#">Festive Collection</a>
+                                <a href="#">Bridal Collection</a>
+                                <a href="#">Party Wear</a>
+                                <a href="#">Casual Wear</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-7.webp" alt="Collection">
+                        </div>
+                    </div>
+                </div>
+                <span class="cat-dot">●</span>
+                <div class="cat-item">
+                    <a href="#" class="cat-link">INSTASHOP</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-links">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">INSTASHOP</h4>
+                                <a href="#">Shop by Instagram</a>
+                                <a href="#">Celeb Styles</a>
+                                <a href="#">Trending Looks</a>
+                            </div>
+                        </div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-4.webp" alt="Instashop">
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
+    </div><!-- end .sticky-top-bar -->
+
+    <!-- MOBILE TAB BAR (mobile only) -->
+    <div class="mobile-tab-bar">
+        <a href="women-collection.html" class="mobile-tab active">WOMEN</a>
+        <a href="men-collection.html" class="mobile-tab">MEN</a>
+        <a href="sarees-collection.html" class="mobile-tab">BRIDAL</a>
+    </div>
+
+    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
+    <div class="mobile-category-circles">
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-1.webp" alt="What's New">
+            </div>
+            <span class="category-circle-label">What's New</span>
+        </a>
+        <a href="sarees-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-2.webp" alt="Sarees">
+            </div>
+            <span class="category-circle-label">Sarees</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-3.webp" alt="Salwar Kameez">
+            </div>
+            <span class="category-circle-label">Salwar Kameez</span>
+        </a>
+        <a href="lehenga-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-4.webp" alt="Lehenga">
+            </div>
+            <span class="category-circle-label">Lehenga</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-5.webp" alt="Gowns">
+            </div>
+            <span class="category-circle-label">Gowns</span>
+        </a>
     </div>
 
     <!-- BANNER -->
@@ -176,6 +498,525 @@
             <button type="submit" class="vs-submit-btn">BOOK AN APPOINTMENT</button>
         </form>
     </div>
+
+
+
+    <!-- SAREE COLLECTION SECTION -->
+    <section class="saree-collection">
+        <h2 class="section-title">Ready-to-Ship-Styles</h2>
+        <div class="saree-container">
+            <div class="saree-main">
+                <a href="sarees-collection.html" class="saree-card featured">
+                    <img src="./images/banner -2.jpg" alt="Sarees">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Sarees</span>
+                    </div>
+                </a>
+            </div>
+            <div class="saree-grid">
+                <a href="sarees-collection.html" class="saree-card">
+                    <img src="images/banner-1.jpg" alt="Pure Designer Embroidery Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Pure Designer Embroidery Saree</span>
+                    </div>
+                </a>
+                <a href="sarees-collection.html" class="saree-card">
+                    <img src="./images/banner-3.jpg" alt="Handloom Silk Embroidery Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Handloom Silk Embroidery Saree</span>
+                    </div>
+                </a>
+                <a href="sarees-collection.html" class="saree-card">
+                    <img src="./images/banner-4.jpg" alt="Kanchipuram Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Kanchipuram Saree</span>
+                    </div>
+                </a>
+                <a href="sarees-collection.html" class="saree-card">
+                    <img src="./images/banner-5.jpg" alt="Ready Blouse Sarees">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Ready Blouse Sarees</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW ARRIVALS SECTION -->
+    <section class="new-arrivals">
+        <div class="new-arrivals-header">
+            <h2 class="section-title-alt">New Arrivals</h2>
+            <div class="carousel-nav">
+                <button class="nav-btn prev" id="arrivalsPrev">&#8249;</button>
+                <button class="nav-btn next" id="arrivalsNext">&#8250;</button>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="arrivalsTrack">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-1.webp" alt="Red Crepe Ready To Wear Saree">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Red Crepe Ready To Wear Saree with Silk Blouse and Embroidery</p>
+                        <p class="product-price">&#8377; 15,990</p>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-2.webp" alt="Black Lycra Ready To Wear Saree">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Black Lycra Ready To Wear Saree with Embroidered Sleeveless Blouse</p>
+                        <p class="product-price">&#8377; 18,490</p>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-3.webp" alt="Gold Sequins Embroidered Shimmer">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Gold Sequins Embroidered Shimmer Designer Lehenga with Sweetheart Neck
+                        </p>
+                        <p class="product-price">&#8377; 25,000</p>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-4.webp" alt="Beige Sequins Embroidered Net">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Beige Sequins Embroidered Net Promotional Lehenga with Resham and Stone
+                        </p>
+                        <p class="product-price">&#8377; 32,500</p>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-5.webp" alt="Orange Sequins Embroidered Net">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Orange Sequins Embroidered Net Promotional Lehenga with Resham and Stone
+                        </p>
+                        <p class="product-price">&#8377; 29,900</p>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-6.webp" alt="Pink Embroidered Lehenga">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Blush Pink Sequins Embroidered Georgette Lehenga with Ruffle Dupatta</p>
+                        <p class="product-price">&#8377; 42,000</p>
+                    </div>
+                </div>
+                <!-- Product 7 -->
+                <div class="product-card product-card-7">
+                    <div class="product-media">
+                        <img src="./images/image-7.webp" alt="Emerald Green Anarkali">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Emerald Green Zari Embroidered Silk Anarkali Suit with Network Dupatta
+                        </p>
+                        <p class="product-price">&#8377; 21,500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- PROMO BANNER SECTION -->
+    <section class="promo-banner-section">
+        <div class="promo-banner-overlay"></div>
+        <div class="promo-banner-content">
+            <h2 class="promo-title">Unlock the world of fashion</h2>
+            <div class="promo-divider"></div>
+            <p class="promo-subtitle">Your retail destination,<br>just a click away!</p>
+        </div>
+    </section>
+
+    <!-- LEHENGA COLLECTION SECTION -->
+    <section class="lehenga-collection">
+        <h2 class="section-title">Designer Lehengas</h2>
+        <div class="lehenga-container">
+            <div class="lehenga-main">
+                <a href="lehenga-collection.html" class="lehenga-card featured">
+                    <img src="./images/lehenga_new.webp" alt="Lehengas">
+                    <div class="lehenga-overlay">
+                        <span class="lehenga-label">Lehengas</span>
+                    </div>
+                </a>
+            </div>
+            <div class="lehenga-grid">
+                <a href="lehenga-collection.html" class="lehenga-card">
+                    <img src="./images/lehenga-1.webp" alt="Bridal Lehenga">
+                    <div class="lehenga-overlay">
+                        <span class="lehenga-label">Bridal Lehenga</span>
+                    </div>
+                </a>
+                <a href="lehenga-collection.html" class="lehenga-card">
+                    <img src="./images/lehenga-2.webp" alt="Party Wear Lehenga">
+                    <div class="lehenga-overlay">
+                        <span class="lehenga-label">Party Wear Lehenga</span>
+                    </div>
+                </a>
+                <a href="lehenga-collection.html" class="lehenga-card">
+                    <img src="./images/lehenga-3.webp" alt="Pastel Lehenga">
+                    <div class="lehenga-overlay">
+                        <span class="lehenga-label">Pastel Lehenga</span>
+                    </div>
+                </a>
+                <a href="lehenga-collection.html" class="lehenga-card">
+                    <img src="./images/lehenga-4.webp" alt="Embroidered Lehenga">
+                    <div class="lehenga-overlay">
+                        <span class="lehenga-label">Embroidered Lehenga</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRENDING NOW SECTION -->
+    <section class="new-arrivals">
+        <div class="new-arrivals-header">
+            <h2 class="section-title-alt">Trending Now </h2>
+            <div class="carousel-nav">
+                <button class="nav-btn prev" id="trendingPrev">&#8249;</button>
+                <button class="nav-btn next" id="trendingNext">&#8250;</button>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="trendingTrack">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-1.webp" alt="Red Crepe Ready To Wear Saree">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Red Crepe Ready To Wear Saree with Silk Blouse and Embroidery</p>
+                        <p class="product-price">&#8377; 15,990</p>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-2.webp" alt="Black Lycra Ready To Wear Saree">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Black Lycra Ready To Wear Saree with Embroidered Sleeveless Blouse</p>
+                        <p class="product-price">&#8377; 18,490</p>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-3.webp" alt="Gold Sequins Embroidered Shimmer">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Gold Sequins Embroidered Shimmer Designer Lehenga with Sweetheart Neck
+                        </p>
+                        <p class="product-price">&#8377; 25,000</p>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-4.webp" alt="Beige Sequins Embroidered Net">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Beige Sequins Embroidered Net Promotional Lehenga with Resham and Stone
+                        </p>
+                        <p class="product-price">&#8377; 32,500</p>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-5.webp" alt="Orange Sequins Embroidered Net">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Orange Sequins Embroidered Net Promotional Lehenga with Resham and Stone
+                        </p>
+                        <p class="product-price">&#8377; 29,900</p>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-media">
+                        <img src="./images/image-6.webp" alt="Pink Embroidered Lehenga">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Blush Pink Sequins Embroidered Georgette Lehenga with Ruffle Dupatta</p>
+                        <p class="product-price">&#8377; 42,000</p>
+                    </div>
+                </div>
+                <!-- Product 7 -->
+                <div class="product-card product-card-7">
+                    <div class="product-media">
+                        <img src="./images/image-7.webp" alt="Emerald Green Anarkali">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-desc">Emerald Green Zari Embroidered Silk Anarkali Suit with Network Dupatta
+                        </p>
+                        <p class="product-price">&#8377; 21,500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECOND PROMO BANNER SECTION -->
+    <section class="promo-banner-section promo-banner-2">
+        <div class="promo-banner-overlay"></div>
+        <div class="promo-banner-content">
+            <h2 class="promo-title">Elevate Your Style</h2>
+            <div class="promo-divider"></div>
+            <p class="promo-subtitle">Discover the latest collections,<br>handpicked for you!</p>
+        </div>
+    </section>
+
+    <!-- SAREE COLLECTION SECTION -->
+    <section class="saree-collection">
+        <h2 class="section-title">Shop by Occasion</h2>
+        <div class="saree-container">
+            <div class="saree-main">
+                <a href="women-collection.html" class="saree-card featured">
+                    <img src="./images/banner -2.jpg" alt="Sarees">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Sarees</span>
+                    </div>
+                </a>
+            </div>
+            <div class="saree-grid">
+                <a href="women-collection.html" class="saree-card">
+                    <img src="images/banner-1.jpg" alt="Pure Designer Embroidery Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Pure Designer Embroidery Saree</span>
+                    </div>
+                </a>
+                <a href="women-collection.html" class="saree-card">
+                    <img src="./images/banner-3.jpg" alt="Handloom Silk Embroidery Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Handloom Silk Embroidery Saree</span>
+                    </div>
+                </a>
+                <a href="women-collection.html" class="saree-card">
+                    <img src="./images/banner-4.jpg" alt="Kanchipuram Saree">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Kanchipuram Saree</span>
+                    </div>
+                </a>
+                <a href="women-collection.html" class="saree-card">
+                    <img src="./images/banner-5.jpg" alt="Ready Blouse Sarees">
+                    <div class="saree-overlay">
+                        <span class="saree-label">Ready Blouse Sarees</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SHOP OUR COLLECTION SECTION -->
+    <section class="shop-collection">
+        <h2 class="section-title">Shop Our Collection</h2>
+        <div class="collection-grid">
+            <div class="collection-card">
+                <a href="women-collection.html">
+                    <div class="collection-img">
+                        <img src="./images/image-1.webp" alt="Wedding Collection">
+                    </div>
+                    <div class="collection-label">
+                        <span class="collection-name">Wedding</span>
+                        <span class="collection-tag">COLLECTION</span>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-card">
+                <a href="#">
+                    <div class="collection-img">
+                        <img src="./images/image-2.webp" alt="Designer Collection">
+                    </div>
+                    <div class="collection-label">
+                        <span class="collection-name">Designer</span>
+                        <span class="collection-tag">COLLECTION</span>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-card">
+                <a href="lehenga-collection.html">
+                    <div class="collection-img">
+                        <img src="./images/image-3.webp" alt="Bridal Collections">
+                    </div>
+                    <div class="collection-label">
+                        <span class="collection-name">Bridal Collections</span>
+                        <span class="collection-tag">COLLECTION</span>
+                    </div>
+                </a>
+            </div>
+            <div class="collection-card">
+                <a href="men-collection.html">
+                    <div class="collection-img">
+                        <img src="./images/image-4.webp" alt="Bespoke's Men Collection">
+                    </div>
+                    <div class="collection-label">
+                        <span class="collection-name">Bespoke's Men</span>
+                        <span class="collection-tag">COLLECTION</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="shop-all-wrap">
+            <a href="#" class="shop-all-btn">Shop All Products</a>
+        </div>
+    </section>
+
+    <!-- CLIENT DIARIES SECTION -->
+    <section class="client-diaries">
+        <h2 class="section-title">Client Diaries</h2>
+        <div class="diaries-carousel-wrap">
+            <button class="diaries-nav prev" id="diariesPrev">&#8249;</button>
+            <div class="diaries-viewport">
+                <div class="diaries-track" id="diariesTrack">
+                    <!-- Card 1 -->
+                    <div class="diary-card">
+                        <div class="diary-content">
+                            <div class="diary-quote-icon">&#10077;&#10077;</div>
+                            <p class="diary-text">"The customer service at T&amp;M is unmatched! I had a question about
+                                my order, and the team responded promptly. My saree arrived on time, and it's gorgeous.
+                                The attention to detail is remarkable. Will definitely shop again!"</p>
+                            <h4 class="diary-name">Shiwani Agarwal</h4>
+                            <span class="diary-country">INDIA</span>
+                        </div>
+                        <div class="diary-img">
+                            <img src="./images/image-1.webp" alt="Shiwani Agarwal">
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="diary-card">
+                        <div class="diary-content">
+                            <div class="diary-quote-icon">&#10077;&#10077;</div>
+                            <p class="diary-text">"The Dress I ordered from T&amp;M was exactly what I hoped for! The
+                                colors were vibrant, and the fabric felt rich. Everyone at the party loved it, and I
+                                felt so confident wearing it. Thank you for the wonderful product and experience!"</p>
+                            <h4 class="diary-name">Harini Anjanappa</h4>
+                            <span class="diary-country">INDIA</span>
+                        </div>
+                        <div class="diary-img">
+                            <img src="./images/image-2.webp" alt="Harini Anjanappa">
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="diary-card">
+                        <div class="diary-content">
+                            <div class="diary-quote-icon">&#10077;&#10077;</div>
+                            <p class="diary-text">"Absolutely in love with the lehenga I received! The embroidery work
+                                is intricate and the fitting was perfect. The delivery was faster than expected. T&amp;M
+                                truly understands what women want. Highly recommended!"</p>
+                            <h4 class="diary-name">Priya Sharma</h4>
+                            <span class="diary-country">INDIA</span>
+                        </div>
+                        <div class="diary-img">
+                            <img src="./images/image-3.webp" alt="Priya Sharma">
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="diary-card">
+                        <div class="diary-content">
+                            <div class="diary-quote-icon">&#10077;&#10077;</div>
+                            <p class="diary-text">"I ordered a salwar kameez for my mother's birthday, and she was
+                                thrilled! The quality of the fabric is outstanding, and the color was exactly as shown
+                                on the website. Excellent packaging and timely delivery!"</p>
+                            <h4 class="diary-name">Meera Reddy</h4>
+                            <span class="diary-country">INDIA</span>
+                        </div>
+                        <div class="diary-img">
+                            <img src="./images/image-4.webp" alt="Meera Reddy">
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="diary-card">
+                        <div class="diary-content">
+                            <div class="diary-quote-icon">&#10077;&#10077;</div>
+                            <p class="diary-text">"This was my first purchase from T&amp;M Online Fashions and I'm
+                                thoroughly impressed. The Kanchipuram silk saree is authentic and beautiful. The
+                                customer support team was very helpful in guiding me with the right size."</p>
+                            <h4 class="diary-name">Ananya Krishnan</h4>
+                            <span class="diary-country">INDIA</span>
+                        </div>
+                        <div class="diary-img">
+                            <img src="./images/image-5.webp" alt="Ananya Krishnan">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="diaries-nav next" id="diariesNext">&#8250;</button>
+        </div>
+    </section>
+
+    <!-- EMAIL SUBSCRIBE SECTION -->
+    <section class="subscribe-section">
+        <div class="subscribe-content">
+            <p class="subscribe-text">Many things are happening, Get the latest news &amp; updates.<br>Subscribe our
+                Newsletter!</p>
+            <div class="subscribe-form">
+                <input type="email" class="subscribe-input" placeholder="Enter Email Address">
+                <button class="subscribe-btn">Subscribe Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES BAR -->
+    <section class="features-bar">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div>
+                <h4 class="feature-title">90% Ready To Ship</h4>
+                <p class="feature-desc">We impart assurance on worldwide delivery and 90% of the merchandise are ready
+                    to ship. Once the order placed from your end, the product ordered will be delivered to your doorstep
+                    within 3-4 business days.</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+            <div>
+                <h4 class="feature-title">100% Original Quality</h4>
+                <p class="feature-desc">Quality assurance of our product are highly uncompromisable as we offer 100%
+                    genuine quality, ensuring our products and services to meet upto your expectation.</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
+            <div>
+                <h4 class="feature-title">Best Price Challenge</h4>
+                <p class="feature-desc">The prices offered here are in complete gratification with the customer as it is
+                    cost effective and best suitable with your purchase to make your shopping experience hassle free and
+                    easy.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -351,6 +1192,54 @@
             }
         }
     </script>
-</body>
+    <!-- Accordion Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // Prevent default if it's a button
+                    if (this.tagName.toLowerCase() === 'button') {
+                        e.preventDefault();
+                    } else {
+                        // If it's a direct link without children, let it navigate
+                        return;
+                    }
 
-</html>
+                    const item = this.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = this.querySelector('i.fa-plus, i.fa-minus');
+                    
+                    // Toggle current item
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = null;
+                        if(icon) {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    } else {
+                        // Optional: Close other open items
+                        document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                            openItem.classList.remove('active');
+                            openItem.querySelector('.accordion-content').style.maxHeight = null;
+                            const openIcon = openItem.querySelector('.accordion-header i.fa-minus');
+                            if(openIcon) {
+                                openIcon.classList.remove('fa-minus');
+                                openIcon.classList.add('fa-plus');
+                            }
+                        });
+                        
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        if(icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>

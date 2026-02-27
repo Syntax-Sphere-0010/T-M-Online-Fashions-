@@ -197,15 +197,18 @@ button {
 }
 
 .icon-btn {
-    width: 36px;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 20px;
+    padding: 0 6px;
     color: var(--text-dark);
     font-size: 15px;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.2s, background 0.2s, padding 0.2s;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .icon-btn:hover {
@@ -216,10 +219,51 @@ button {
 .icon-btn .fa-whatsapp {
     font-size: 17px;
     color: #25d366;
+    flex-shrink: 0;
 }
 
-.icon-btn .fa-whatsapp:hover {
-    color: #1aa350;
+.icon-btn:hover .fa-whatsapp {
+    color: #25d366;
+}
+
+/* WhatsApp phone number — hidden, slides in on hover */
+.whatsapp-number {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a1a;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.35s ease, opacity 0.25s ease;
+}
+
+.icon-btn:hover .whatsapp-number {
+    max-width: 140px;
+    opacity: 1;
+}
+
+/* Video Call hover label */
+.icon-tooltip {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a1a;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.35s ease, opacity 0.25s ease;
+}
+
+.icon-btn:hover .icon-tooltip {
+    max-width: 120px;
+    opacity: 1;
+}
+
+.icon-btn-video .fa-video {
+    flex-shrink: 0;
 }
 
 .wishlist-badge {
@@ -1206,6 +1250,152 @@ button {
     border: none;
     border-top: 1px solid var(--border);
     margin: 6px 20px;
+}
+
+/* ===========================
+   MOBILE NAV AUTH BANNER
+=========================== */
+.mobile-nav-top-banner {
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+
+.mobile-nav-top-banner p {
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 10px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.mobile-nav-auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f5f0e8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #3a3a3a;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.2px;
+    transition: background 0.2s;
+}
+
+.mobile-nav-auth-btn:hover {
+    background: #ede8df;
+}
+
+.mobile-nav-auth-btn i {
+    font-size: 14px;
+    color: #888;
+}
+
+.mobile-nav-orders-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3a3a3a;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fafaf7;
+    margin: 8px 0;
+    transition: background 0.2s;
+}
+
+.mobile-nav-orders-link:hover {
+    background: #f0ebe0;
+}
+
+.mobile-nav-orders-link i {
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* ===========================
+   ACCORDION MENU
+=========================== */
+.accordion-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.accordion-header i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    margin-right: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: #FDFBF7;
+}
+
+.accordion-content-inner {
+    padding: 0 0 15px 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accordion-sublink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.accordion-sublink i {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.accordion-item.active .accordion-header {
+    color: #B59A6D;
+}
+
+.accordion-item.active .accordion-header i {
+    color: #B59A6D;
 }
 
 /* ===========================
@@ -3916,33 +4106,38 @@ button {
 ============================================= */
 .search-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: #fff;
+    top: 60px;
+    /* Margin on top */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    width: 90%;
+    max-width: 700px;
+    height: auto;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
     z-index: 10000;
-    overflow: hidden;
-    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .search-overlay.open {
-    height: 20vh;
-    min-height: 160px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 .search-overlay-inner {
-    max-width: 800px;
     width: 100%;
-    margin: 0 auto;
-    padding: 30px 30px 0;
-    flex: 1;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .search-overlay-top {
@@ -3951,6 +4146,8 @@ button {
     gap: 12px;
     border-bottom: 2px solid #1a1a1a;
     padding-bottom: 10px;
+    padding-right: 40px;
+    /* Space for close button */
 }
 
 .search-overlay-input {
@@ -3975,26 +4172,28 @@ button {
 
 .search-overlay-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 32px;
-    height: 32px;
-    border: none;
-    background: transparent;
-    font-size: 26px;
-    color: #888;
+    top: 25px;
+    right: 25px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e0e0e0;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    font-size: 24px;
+    color: #555;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.2s;
     z-index: 2;
 }
 
 .search-overlay-close:hover {
     background: #f0f0f0;
     color: #1a1a1a;
+    transform: scale(1.05);
 }
 
 .search-overlay-hint {
@@ -4038,6 +4237,61 @@ button {
 .search-result-info {
     flex: 1;
 }
+
+/* =============================================
+   SEARCH AUTO-SUGGESTION DROPDOWN STYLES
+============================================= */
+.search-suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+}
+
+.search-suggestion-item:hover {
+    background: #fafafa;
+}
+
+.search-suggestion-img {
+    width: 45px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f5f5f5;
+    flex-shrink: 0;
+}
+
+.search-suggestion-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.search-suggestion-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.search-suggestion-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-transform: capitalize;
+}
+
+.search-suggestion-category {
+    font-size: 12px;
+    color: #0066cc;
+    /* Link blue akin to Flipkart's suggestion category */
+}
+
 
 .search-result-name {
     font-size: 13px;
@@ -4939,7 +5193,7 @@ button {
 }
 
 .icon-btn:hover .whatsapp-number {
-    max-width: 150px;
+    max-width: 250px;
     opacity: 1;
     margin-left: 8px;
 }
@@ -4970,3 +5224,5 @@ button {
         /* Hide number on very small screens to save space */
     }
 }
+
+/
