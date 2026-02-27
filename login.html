@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign In – T&M Online Fashions. Access your account.">
+    <link rel="stylesheet" href="./index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Sign In – T&M Online Fashions</title>
+</head>
+
+<body>
+
+    <!-- CLOSE BUTTON -->
+    <button class="login-close" id="loginClose" title="Close">&times;</button>
+
+    <div class="login-wrapper">
+        <!-- LEFT IMAGE -->
+        <div class="login-image">
+            <img src="./images/banner-3.jpg" alt="T&M Online Fashions">
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="login-form-side">
+            <div class="login-form-inner">
+                <h1 class="login-title">Sign In</h1>
+                <p class="login-subtitle">Welcome back! Please sign in to your account</p>
+
+                <form id="loginForm" onsubmit="event.preventDefault(); alert('Sign in successful!'); ">
+                    <div class="login-field">
+                        <label class="login-label">Email Address</label>
+                        <div class="login-input-wrap">
+                            <input type="email" class="login-input" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="login-field">
+                        <label class="login-label">Password</label>
+                        <div class="login-input-wrap">
+                            <input type="password" class="login-input" id="loginPassword"
+                                placeholder="Enter your password" required>
+                            <button type="button" class="login-eye-btn" id="loginEyeBtn" title="Show password">
+                                <i class="fa-regular fa-eye" id="loginEyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-submit">SIGN IN</button>
+                </form>
+
+                <p class="login-signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+
+                <div class="login-divider">or continue with</div>
+
+                <button class="login-social-btn google">
+                    <i class="fa-brands fa-google"></i> Sign in with Google
+                </button>
+                <button class="login-social-btn twitter">
+                    <i class="fa-brands fa-x-twitter"></i> Sign in with Twitter
+                </button>
+                <button class="login-social-btn facebook">
+                    <i class="fa-brands fa-facebook-f"></i> Sign in with Facebook
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Close button
+        document.getElementById('loginClose').addEventListener('click', function () {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Password eye toggle
+        var eyeBtn = document.getElementById('loginEyeBtn');
+        var pwInput = document.getElementById('loginPassword');
+        var eyeIcon = document.getElementById('loginEyeIcon');
+        eyeBtn.addEventListener('click', function () {
+            if (pwInput.type === 'password') {
+                pwInput.type = 'text';
+                eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                pwInput.type = 'password';
+                eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    </script>
+</body>
+
+</html>

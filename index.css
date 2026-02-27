@@ -3879,3 +3879,1094 @@ button {
     color: #888;
     letter-spacing: 0.5px;
 }
+
+/* =============================================
+   ICON HOVER TOOLTIPS
+============================================= */
+.icon-btn {
+    position: relative;
+}
+
+.icon-btn .icon-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    pointer-events: none;
+    z-index: 100;
+    margin-top: 6px;
+}
+
+.icon-btn:hover .icon-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =============================================
+   1. SEARCH OVERLAY
+============================================= */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #fff;
+    z-index: 10000;
+    overflow: hidden;
+    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-overlay.open {
+    height: 20vh;
+    min-height: 160px;
+}
+
+.search-overlay-inner {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 30px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.search-overlay-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 10px;
+}
+
+.search-overlay-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+    background: transparent;
+}
+
+.search-overlay-input::placeholder {
+    color: #bbb;
+}
+
+.search-overlay-icon {
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+}
+
+.search-overlay-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    font-size: 26px;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+    z-index: 2;
+}
+
+.search-overlay-close:hover {
+    background: #f0f0f0;
+    color: #1a1a1a;
+}
+
+.search-overlay-hint {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 14px;
+    letter-spacing: 0.3px;
+}
+
+.search-overlay-results {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.search-result-item:hover {
+    background: #fafafa;
+}
+
+.search-result-img {
+    width: 50px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+}
+
+.search-result-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #b8860b;
+}
+
+/* =============================================
+   2. VIDEO SHOPPING PAGE
+============================================= */
+.vs-banner {
+    width: 100%;
+    max-height: 360px;
+    overflow: hidden;
+}
+
+.vs-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.vs-form-section {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 30px 60px;
+}
+
+.vs-form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.vs-section-heading {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #b8860b;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.vs-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.vs-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vs-field.full {
+    grid-column: 1 / -1;
+}
+
+.vs-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.vs-input,
+.vs-select,
+.vs-textarea {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a1a;
+    outline: none;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.vs-input:focus,
+.vs-select:focus,
+.vs-textarea:focus {
+    border-color: #b8860b;
+}
+
+.vs-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.vs-divider {
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    margin: 24px 0;
+}
+
+.vs-platform-options {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.vs-platform-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 10px 16px;
+    transition: all 0.2s;
+}
+
+.vs-platform-option:hover {
+    border-color: #b8860b;
+    background: #fdfaf4;
+}
+
+.vs-platform-option:has(input[type="radio"]:checked) {
+    border-color: #b8860b;
+    background: #fdfaf4;
+    font-weight: 600;
+}
+
+.vs-platform-option input[type="radio"] {
+    accent-color: #b8860b;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.vs-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border: 1px solid #1a1a1a;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+    border-radius: 50px;
+    /* Fully rounded buttons as requested */
+    margin-top: 10px;
+}
+
+.vs-submit-btn:hover {
+    background: #b8860b;
+}
+
+/* =============================================
+   3. WHATSAPP PAGE
+============================================= */
+.wa-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 10px 20px;
+    background: #f0f0f0;
+    font-size: 13px;
+}
+
+.wa-topbar a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.wa-topbar a:hover {
+    color: #25d366;
+}
+
+.wa-topbar .wa-download-btn {
+    background: #25d366;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.wa-topbar .wa-download-btn:hover {
+    background: #1da855;
+}
+
+.wa-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #e8f5e9, #f1f8f1);
+}
+
+.wa-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.wa-logo-icon {
+    font-size: 52px;
+    color: #25d366;
+}
+
+.wa-logo-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wa-blue-tick {
+    color: #2196f3;
+    font-size: 20px;
+}
+
+.wa-tagline {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 36px;
+}
+
+.wa-open-app-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 2px solid #1a1a1a;
+    color: #1a1a1a;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s;
+    margin-bottom: 16px;
+}
+
+.wa-open-app-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #1a1a1a;
+    z-index: -1;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wa-open-app-btn:hover {
+    color: #fff;
+}
+
+.wa-open-app-btn:hover::before {
+    height: 100%;
+}
+
+.wa-web-link {
+    display: block;
+    font-size: 14px;
+    color: #25d366;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-decoration: none;
+}
+
+.wa-web-link:hover {
+    text-decoration: underline;
+}
+
+.wa-download-text {
+    font-size: 13px;
+    color: #999;
+}
+
+.wa-download-text a {
+    color: #25d366;
+    font-weight: 600;
+}
+
+/* =============================================
+   4. WISHLIST PAGE
+============================================= */
+.wishlist-hero {
+    text-align: left;
+    padding: 50px 40px 10px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .wishlist-hero {
+        padding: 40px 20px 10px 20px;
+    }
+}
+
+.wishlist-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.wishlist-hero p {
+    font-size: 14px;
+    color: #888;
+}
+
+.wishlist-empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: #bbb;
+}
+
+.wishlist-empty i {
+    font-size: 52px;
+    margin-bottom: 16px;
+    display: block;
+    color: #ddd;
+}
+
+.wishlist-empty p {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.wishlist-empty a {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.wishlist-empty a:hover {
+    background: #b8860b;
+}
+
+.wishlist-remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #e53935;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.wishlist-remove-btn:hover {
+    transform: scale(1.1);
+}
+
+/* =============================================
+   5. LOGIN PAGE
+============================================= */
+.login-wrapper {
+    display: flex;
+    min-height: 100vh;
+    padding: 0 15%;
+    background: #fafafa;
+}
+
+.login-image {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.login-form-side {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login-form-inner {
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #555;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s;
+}
+
+.login-close:hover {
+    background: #f0f0f0;
+    color: #1a1a1a;
+}
+
+.login-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 32px;
+}
+
+.login-field {
+    margin-bottom: 20px;
+}
+
+.login-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.login-input-wrap {
+    position: relative;
+}
+
+.login-input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a1a;
+    outline: none;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.login-input:focus {
+    border-color: #b8860b;
+}
+
+.login-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+}
+
+.login-eye-btn:hover {
+    color: #1a1a1a;
+}
+
+.login-submit {
+    width: 100%;
+    padding: 14px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-bottom: 16px;
+}
+
+.login-submit:hover {
+    background: #b8860b;
+}
+
+.login-signup-text {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 28px;
+}
+
+.login-signup-text a {
+    color: #b8860b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.login-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #fff;
+    color: #333;
+    margin-bottom: 10px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.login-social-btn:hover {
+    background: #f5f5f5;
+    border-color: #bbb;
+}
+
+.login-social-btn i {
+    font-size: 18px;
+}
+
+.login-social-btn.google i {
+    color: #ea4335;
+}
+
+.login-social-btn.twitter i {
+    color: #1a1a1a;
+}
+
+.login-social-btn.facebook i {
+    color: #1877f2;
+}
+
+/* =============================================
+   RESPONSIVE — NEW FEATURES (≤768px)
+============================================= */
+@media (max-width: 768px) {
+
+    /* Search overlay */
+    .search-overlay.open {
+        height: 25vh;
+        min-height: 150px;
+    }
+
+    .search-overlay-inner {
+        padding: 20px 16px 0;
+    }
+
+    .search-overlay-input {
+        font-size: 15px;
+    }
+
+    .search-overlay-close {
+        top: 10px;
+        right: 12px;
+    }
+
+    /* Video Shopping */
+    .vs-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vs-form-section {
+        padding: 0 16px 40px;
+    }
+
+    .vs-form-title {
+        font-size: 22px;
+    }
+
+    .vs-platform-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* WhatsApp */
+    .wa-topbar {
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .wa-logo-text {
+        font-size: 24px;
+    }
+
+    .wa-logo-icon {
+        font-size: 40px;
+    }
+
+    .wa-hero {
+        padding: 40px 16px;
+        min-height: 60vh;
+    }
+
+    /* Wishlist */
+    .wishlist-hero h1 {
+        font-size: 24px;
+    }
+
+    /* Login */
+    .login-wrapper {
+        padding: 0;
+        flex-direction: column;
+    }
+
+    .login-image {
+        display: none;
+    }
+
+    .login-form-side {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 24px;
+    }
+
+    /* Tooltips */
+    .icon-btn .icon-tooltip {
+        display: none;
+    }
+}
+
+/* =============================================
+   6. LOGIN MODAL OVERLAY
+============================================= */
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 3000;
+    display: none;
+    /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-modal-overlay.open {
+    display: flex;
+}
+
+.login-modal-container {
+    background: #fff;
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.4s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    background: #f5f5f5;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.login-modal-close:hover {
+    background: #eee;
+}
+
+.login-modal-image {
+    width: 50%;
+    height: 100%;
+    background: #f9f9f9;
+}
+
+.login-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-modal-content {
+    width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.login-modal-content p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.login-form-group {
+    margin-bottom: 20px;
+}
+
+.login-form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: #888;
+}
+
+.login-form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.login-form-group input:focus {
+    border-color: #1a1a1a;
+}
+
+.login-modal-submit {
+    width: 100%;
+    padding: 16px;
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #1a1a1a;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.login-modal-submit:hover {
+    background: #333;
+}
+
+.login-modal-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-modal-footer a {
+    color: #1a1a1a;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-login-btn {
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 0.2s;
+}
+
+.social-login-btn:hover {
+    background: #f9f9f9;
+}
+
+/* WhatsApp Inline Number styling */
+.whatsapp-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover .whatsapp-number {
+    max-width: 150px;
+    opacity: 1;
+    margin-left: 8px;
+}
+
+@media (max-width: 992px) {
+    .login-modal-container {
+        max-width: 500px;
+        height: auto;
+    }
+
+    .login-modal-image {
+        display: none;
+    }
+
+    .login-modal-content {
+        width: 100%;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-modal-overlay {
+        padding: 10px;
+    }
+
+    .whatsapp-number {
+        display: none;
+        /* Hide number on very small screens to save space */
+    }
+}

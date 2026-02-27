@@ -4,37 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lehenga Collection – T&M Online Fashions. Shop stunning designer lehengas.">
+    <meta name="description" content="Contact T&M Online Fashions on WhatsApp for personalized shopping assistance.">
     <link rel="stylesheet" href="./index.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Lehenga Collection – T&M Online Fashions</title>
+    <title>WhatsApp – T&M Online Fashions</title>
 </head>
 
 <body>
 
-    <!-- STICKY TOP BAR -->
+    <!-- STICKY TOP BAR: Promo + Header -->
     <div class="sticky-top-bar">
+
+        <!-- PROMO BAR -->
         <div class="promo-bar">
             <span class="promo-icon">🌐</span>
             <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
         </div>
+
+        <!-- HEADER -->
         <header class="header">
+            <!-- Top Nav Row -->
             <div class="header-inner">
+
+                <!-- Hamburger Toggle (mobile only) -->
                 <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
                     <span></span><span></span><span></span>
                 </button>
+
+                <!-- Left Nav -->
                 <nav class="header-nav-left">
                     <a href="women-collection.html" class="nav-pill active">WOMEN</a>
                     <a href="men-collection.html" class="nav-link-top">MEN</a>
                     <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
                 </nav>
-                <div class="logo-wrap">
+
+                <!-- Center Logo -->
+                <div class="logo-wrap" style="cursor: pointer;" onclick="window.location.href='index.html'">
                     <div class="logo-icon">✿</div>
-                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                    <div class="logo-text">T&amp;M Online Fashions</div>
                 </div>
+
+                <!-- Right Icons -->
                 <div class="header-icons">
                     <div class="currency-selector">
                         <i class="fa-regular fa-credit-card"></i>
@@ -63,6 +76,7 @@
                 </div>
             </div>
 
+            <!-- Mobile Nav Drawer -->
             <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
             <div class="mobile-nav-drawer" id="mobileNavDrawer">
                 <div class="mobile-nav-header">
@@ -70,13 +84,18 @@
                     <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
                 </div>
                 <nav class="mobile-nav-links">
-                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
+                    <a href="women-collection.html" class="mobile-nav-link active">WOMEN</a>
                     <a href="men-collection.html" class="mobile-nav-link">MEN</a>
                     <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
                     <hr class="mobile-nav-divider">
+                    <a href="#" class="mobile-nav-link">WHAT'S NEW</a>
                     <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
-                    <a href="lehenga-collection.html" class="mobile-nav-link active">LEHENGA</a>
+                    <a href="#" class="mobile-nav-link">SALWAR KAMEEZ</a>
+                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
+                    <a href="#" class="mobile-nav-link">GOWNS</a>
                     <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
+                    <a href="#" class="mobile-nav-link">COLLECTION</a>
+                    <a href="#" class="mobile-nav-link">INSTASHOP</a>
                 </nav>
             </div>
 
@@ -95,7 +114,9 @@
                                 <a href="#">Party Wear</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-1.webp" alt="What's New"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-1.webp" alt="What's New">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -124,7 +145,9 @@
                                 <a href="lehenga-collection.html">Designer Lehenga</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-2.webp" alt="Sarees"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-2.webp" alt="Sarees">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -141,7 +164,9 @@
                                 <a href="#">Unstitched Salwars</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-3.webp" alt="Salwar Kameez"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-3.webp" alt="Salwar Kameez">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -157,7 +182,9 @@
                                 <a href="lehenga-collection.html">Embroidered Lehenga</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/lehenga-1.webp" alt="Lehenga"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/lehenga-1.webp" alt="Lehenga">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -173,7 +200,9 @@
                                 <a href="#">Reception Gowns</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-5.webp" alt="Gowns"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-5.webp" alt="Gowns">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -189,7 +218,9 @@
                                 <a href="men-collection.html">Nehru Jackets</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-6.webp" alt="Men's Wear"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-6.webp" alt="Men's Wear">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -205,7 +236,9 @@
                                 <a href="#">Casual Wear</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-7.webp" alt="Collection"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-7.webp" alt="Collection">
+                        </div>
                     </div>
                 </div>
                 <span class="cat-dot">●</span>
@@ -220,35 +253,81 @@
                                 <a href="#">Trending Looks</a>
                             </div>
                         </div>
-                        <div class="mega-menu-img"><img src="./images/image-4.webp" alt="Instashop"></div>
+                        <div class="mega-menu-img">
+                            <img src="./images/image-4.webp" alt="Instashop">
+                        </div>
                     </div>
                 </div>
             </nav>
         </header>
+    </div><!-- end .sticky-top-bar -->
+
+    <!-- MOBILE TAB BAR (mobile only) -->
+    <div class="mobile-tab-bar">
+        <a href="women-collection.html" class="mobile-tab active">WOMEN</a>
+        <a href="men-collection.html" class="mobile-tab">MEN</a>
+        <a href="sarees-collection.html" class="mobile-tab">BRIDAL</a>
     </div>
 
-    <!-- COLLECTION PAGE CONTENT -->
-    <section class="collection-page-hero">
-        <h1 class="collection-page-title">Lehenga Collection</h1>
-        <p class="collection-page-subtitle">Browse our breathtaking collection of bridal and designer lehengas</p>
-    </section>
+    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
+    <div class="mobile-category-circles">
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-1.webp" alt="What's New">
+            </div>
+            <span class="category-circle-label">What's New</span>
+        </a>
+        <a href="sarees-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-2.webp" alt="Sarees">
+            </div>
+            <span class="category-circle-label">Sarees</span>
+        </a>
+        <a href="lehenga-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/lehenga-1.webp" alt="Lehenga">
+            </div>
+            <span class="category-circle-label">Lehenga</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-3.webp" alt="Salwar Kameez">
+            </div>
+            <span class="category-circle-label">Salwar Kameez</span>
+        </a>
+        <a href="#" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-5.webp" alt="Gowns">
+            </div>
+            <span class="category-circle-label">Gowns</span>
+        </a>
+        <a href="men-collection.html" class="category-circle">
+            <div class="category-circle-img">
+                <img src="./images/image-6.webp" alt="Men's Wear">
+            </div>
+            <span class="category-circle-label">Men's</span>
+        </a>
+    </div>
 
-    <!-- COLLECTION TOOLBAR -->
-    <div class="collection-toolbar">
-        <span class="collection-result-count" id="resultCount"></span>
-        <div class="collection-sort-wrap">
-            <span class="collection-sort-label">Sort by:</span>
-            <select class="collection-sort-select" id="sortSelect">
-                <option value="default">Featured</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="name-az">Name: A to Z</option>
-            </select>
+    <!-- HERO -->
+    <div class="wa-hero">
+        <div class="wa-logo">
+            <i class="fa-brands fa-whatsapp wa-logo-icon"></i>
+            <span class="wa-logo-text">
+                WhatsApp
+                <i class="fa-solid fa-circle-check wa-blue-tick"></i>
+            </span>
         </div>
+        <p class="wa-tagline">Chat with T&amp;M Online Fashions for personalized shopping</p>
+
+        <button class="wa-open-app-btn" onclick="window.open('https://wa.me/918341952903','_blank')">Open App</button>
+
+        <a href="https://web.whatsapp.com" target="_blank" class="wa-web-link">Continue to WhatsApp Web</a>
+
+        <p class="wa-download-text">Don't have WhatsApp? <a href="https://www.whatsapp.com/download"
+                target="_blank">Download it</a></p>
     </div>
 
-    <!-- PRODUCT GRID -->
-    <div class="collection-products-grid" id="collectionProducts"></div>
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-container">
@@ -273,25 +352,6 @@
             <p>&copy; 2026 T&amp;M Online Fashions. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <!-- CART DRAWER -->
-    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-drawer-header">
-            <span class="cart-drawer-title"><i class="fa-solid fa-bag-shopping"></i> Your Cart</span>
-            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
-        </div>
-        <div class="cart-drawer-body" id="cartDrawerContent"></div>
-        <div class="cart-drawer-footer" id="cartDrawerFooter">
-            <div class="cart-summary-row">
-                <span class="cart-summary-label">Subtotal</span>
-                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
-            </div>
-            <button class="cart-checkout-btn" id="cartCheckoutBtn">
-                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
-            </button>
-        </div>
-    </div>
 
     <!-- LOGIN MODAL -->
     <div class="login-modal-overlay" id="loginModal">
@@ -374,6 +434,29 @@
         <div class="search-overlay-results" id="searchResults"></div>
     </div>
 
+    <!-- CART DRAWER -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h3>YOUR CART (<span id="cartDrawerCount">0</span>)</h3>
+            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        </div>
+        <div class="cart-drawer-body" id="cartDrawerBody">
+            <div class="cart-empty-message" id="cartEmptyMessage">
+                Your cart is currently empty.
+            </div>
+        </div>
+        <div class="cart-drawer-footer" id="cartDrawerFooter" style="display: none;">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Subtotal</span>
+                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">
+                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
     <script src="./shopify.config.js"></script>
     <script src="./shopify-buy.js"></script>
     <script src="./products-data.js"></script>
@@ -407,20 +490,9 @@
                 hamburger.addEventListener('click', openDrawer);
                 closeBtn.addEventListener('click', closeDrawer);
                 backdrop.addEventListener('click', closeDrawer);
-                window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
             })();
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var products = TMStore.getProductsBySubcategory('Lehenga');
-            var countEl = document.getElementById('resultCount');
-            if (countEl) countEl.textContent = products.length + ' products';
-            TMStore.renderProductGrid('collectionProducts', products);
-
-            document.getElementById('sortSelect').addEventListener('change', function () {
-                TMStore.renderProductGrid('collectionProducts', products, { sort: this.value });
-            });
-        });
     </script>
+
 
     <script>
         function toggleSignup(e) {

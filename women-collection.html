@@ -42,15 +42,22 @@
                         <span>INR</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <button class="icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button class="icon-btn icon-btn-video" title="Video Call"><i
-                            class="fa-solid fa-video"></i></button>
-                    <button class="icon-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
-                    <button class="icon-btn" title="Wishlist" style="position: relative;">
+                    <button class="icon-btn" title="Search"
+                        onclick="document.getElementById('searchOverlay').classList.add('open')"><i
+                            class="fa-solid fa-magnifying-glass"></i><span class="icon-tooltip">Search</span></button>
+                    <button class="icon-btn icon-btn-video" title="Video Call"
+                        onclick="window.location.href='video-shopping.html'"><i class="fa-solid fa-video"></i><span
+                            class="icon-tooltip">Video Shopping</span></button>
+                    <button class="icon-btn" title="WhatsApp" onclick="window.location.href='whatsapp.html'"><i
+                            class="fa-brands fa-whatsapp"></i><span class="whatsapp-number">+91 83419
+                            52903</span></button>
+                    <button class="icon-btn" title="Wishlist" style="position: relative;"
+                        onclick="window.location.href='wishlist.html'">
                         <i class="fa-regular fa-heart"></i>
                         <span class="wishlist-badge" id="wishlistCount">0</span>
                     </button>
-                    <button class="icon-btn" title="Account"><i class="fa-regular fa-user"></i></button>
+                    <button class="icon-btn" title="Account" onclick="openLoginModal()"><i
+                            class="fa-regular fa-user"></i></button>
                     <button class="icon-btn" title="Cart" style="position: relative;"><i
                             class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
                             id="cartBadge">0</span></button>
@@ -333,25 +340,123 @@
         </div>
     </div>
 
+    <!-- LOGIN MODAL -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal-container">
+            <button class="login-modal-close" onclick="closeLoginModal()">&times;</button>
+            <div class="login-modal-image">
+                <img src="./images/banner-3.jpg" alt="Login">
+            </div>
+                        <div class="login-modal-content">
+                <!-- Sign In Form -->
+                <div id="signInSection">
+                    <div class="login-header">
+                        <h2>Sign In</h2>
+                        <p>Welcome back! Please sign in to your account.</p>
+                    </div>
+                    <form class="login-form" onsubmit="event.preventDefault(); alert('Login successful!'); closeLoginModal();">
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN IN</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Don't have an account? <a href="#" onclick="toggleSignup(event)">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="signUpSection" style="display: none;">
+                    <div class="login-header">
+                        <h2>Create Account</h2>
+                        <p>Join us today to unlock exclusive benefits.</p>
+                    </div>
+                    <form class="login-form" onsubmit="event.preventDefault(); alert('Registration successful!'); toggleSignup(event);">
+                        <div class="login-form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN UP</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Already have an account? <a href="#" onclick="toggleSignup(event)">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="login-social-grid">
+                    <button class="social-login-btn"><i class="fa-brands fa-google"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-x-twitter"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-facebook-f"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-overlay-close" id="searchOverlayClose">&times;</button>
+        <div class="search-overlay-inner">
+            <div class="search-overlay-top">
+                <i class="fa-solid fa-magnifying-glass search-overlay-icon"></i>
+                <input type="text" class="search-overlay-input" id="searchInput" placeholder="Search by Products"
+                    autocomplete="off">
+            </div>
+            <p class="search-overlay-hint">The New Products Appear</p>
+        </div>
+        <div class="search-overlay-results" id="searchResults"></div>
+    </div>
+
     <script src="./shopify.config.js"></script>
     <script src="./shopify-buy.js"></script>
     <script src="./products-data.js"></script>
     <script src="./store.js"></script>
+    <script src="./search.js"></script>
     <script>
-        // Mobile Nav Toggle
-        (function () {
-            const hamburger = document.getElementById('hamburgerToggle');
-            const drawer = document.getElementById('mobileNavDrawer');
-            const backdrop = document.getElementById('mobileNavBackdrop');
-            const closeBtn = document.getElementById('mobileNavClose');
-            if (!hamburger || !drawer || !backdrop || !closeBtn) return;
-            function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
-            function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
-            hamburger.addEventListener('click', openDrawer);
-            closeBtn.addEventListener('click', closeDrawer);
-            backdrop.addEventListener('click', closeDrawer);
-            window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
-        })();
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        window.onclick = function (event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeLoginModal();
+            }
+        }
+    </script>
+    <script>
+            // Mobile Nav Toggle
+            (function () {
+                const hamburger = document.getElementById('hamburgerToggle');
+                const drawer = document.getElementById('mobileNavDrawer');
+                const backdrop = document.getElementById('mobileNavBackdrop');
+                const closeBtn = document.getElementById('mobileNavClose');
+                if (!hamburger || !drawer || !backdrop || !closeBtn) return;
+                function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+                function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+                hamburger.addEventListener('click', openDrawer);
+                closeBtn.addEventListener('click', closeDrawer);
+                backdrop.addEventListener('click', closeDrawer);
+                window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
+            })();
 
         // Render products for Women category
         document.addEventListener('DOMContentLoaded', function () {
@@ -364,6 +469,21 @@
                 TMStore.renderProductGrid('collectionProducts', products, { sort: this.value });
             });
         });
+    </script>
+
+    <script>
+        function toggleSignup(e) {
+            if (e) e.preventDefault();
+            const signIn = document.getElementById('signInSection');
+            const signUp = document.getElementById('signUpSection');
+            if (signIn.style.display === 'none') {
+                signIn.style.display = 'block';
+                signUp.style.display = 'none';
+            } else {
+                signIn.style.display = 'none';
+                signUp.style.display = 'block';
+            }
+        }
     </script>
 </body>
 

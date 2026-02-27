@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My Wishlist – T&M Online Fashions. View your saved items.">
+    <link rel="stylesheet" href="./index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>My Wishlist – T&M Online Fashions</title>
+</head>
+
+<body>
+
+    <!-- STICKY TOP BAR -->
+    <div class="sticky-top-bar">
+        <div class="promo-bar">
+            <span class="promo-icon">🌐</span>
+            <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
+        </div>
+        <header class="header">
+            <div class="header-inner">
+                <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <nav class="header-nav-left">
+                    <a href="women-collection.html" class="nav-pill active">WOMEN</a>
+                    <a href="men-collection.html" class="nav-link-top">MEN</a>
+                    <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
+                </nav>
+                <div class="logo-wrap">
+                    <div class="logo-icon">✿</div>
+                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                </div>
+                <div class="header-icons">
+                    <div class="currency-selector">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <span>INR</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <button class="icon-btn" title="Search"
+                        onclick="document.getElementById('searchOverlay').classList.add('open')"><i
+                            class="fa-solid fa-magnifying-glass"></i><span class="icon-tooltip">Search</span></button>
+                    <button class="icon-btn icon-btn-video" title="Video Call"
+                        onclick="window.location.href='video-shopping.html'"><i class="fa-solid fa-video"></i><span
+                            class="icon-tooltip">Video Shopping</span></button>
+                    <button class="icon-btn" title="WhatsApp" onclick="window.location.href='whatsapp.html'"><i
+                            class="fa-brands fa-whatsapp"></i><span class="icon-tooltip">+91 83419 52903</span></button>
+                    <button class="icon-btn" title="Wishlist" style="position: relative;">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="wishlist-badge" id="wishlistCount">0</span>
+                    </button>
+                    <button class="icon-btn" title="Account" onclick="window.location.href='login.html'"><i
+                            class="fa-regular fa-user"></i></button>
+                    <button class="icon-btn" title="Cart" style="position: relative;"><i
+                            class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
+                            id="cartBadge">0</span></button>
+                </div>
+            </div>
+
+            <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+            <div class="mobile-nav-drawer" id="mobileNavDrawer">
+                <div class="mobile-nav-header">
+                    <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
+                    <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
+                    <a href="men-collection.html" class="mobile-nav-link">MEN</a>
+                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
+                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
+                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="video-shopping.html" class="mobile-nav-link">VIDEO SHOPPING</a>
+                    <a href="wishlist.html" class="mobile-nav-link active">WISHLIST</a>
+                    <a href="login.html" class="mobile-nav-link">MY ACCOUNT</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- WISHLIST HERO -->
+    <section class="wishlist-hero">
+        <h1><i class="fa-regular fa-heart" style="color:#e53935;margin-right:8px"></i> My Wishlist</h1>
+        <p id="wishlistSubtitle">Your saved items will appear here</p>
+    </section>
+
+    <!-- WISHLIST GRID -->
+    <div class="collection-products-grid" id="wishlistGrid"></div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="footer-heading">Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="women-collection.html">Women</a></li>
+                    <li><a href="sarees-collection.html">Sarees</a></li>
+                    <li><a href="lehenga-collection.html">Lehenga</a></li>
+                    <li><a href="men-collection.html">Men's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <div class="footer-address">
+                    <strong>T&amp;M Online Fashions</strong><br>
+                    No.24, D'Souza Circle,<br>
+                    Richmond Road, Bangalore &ndash; 560047, India
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 T&amp;M Online Fashions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-overlay-close" id="searchOverlayClose">&times;</button>
+        <div class="search-overlay-inner">
+            <div class="search-overlay-top">
+                <i class="fa-solid fa-magnifying-glass search-overlay-icon"></i>
+                <input type="text" class="search-overlay-input" id="searchInput" placeholder="Search by Products"
+                    autocomplete="off">
+            </div>
+            <p class="search-overlay-hint">The New Products Appear</p>
+        </div>
+        <div class="search-overlay-results" id="searchResults"></div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <span class="cart-drawer-title"><i class="fa-solid fa-bag-shopping"></i> Your Cart</span>
+            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        </div>
+        <div class="cart-drawer-body" id="cartDrawerContent"></div>
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Subtotal</span>
+                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">
+                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
+    <script src="./shopify.config.js"></script>
+    <script src="./shopify-buy.js"></script>
+    <script src="./products-data.js"></script>
+    <script src="./store.js"></script>
+    <script src="./search.js"></script>
+    <script>
+        (function () {
+            const hamburger = document.getElementById('hamburgerToggle');
+            const drawer = document.getElementById('mobileNavDrawer');
+            const backdrop = document.getElementById('mobileNavBackdrop');
+            const closeBtn = document.getElementById('mobileNavClose');
+            if (!hamburger || !drawer || !backdrop || !closeBtn) return;
+            function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            hamburger.addEventListener('click', openDrawer);
+            closeBtn.addEventListener('click', closeDrawer);
+            backdrop.addEventListener('click', closeDrawer);
+            window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
+        })();
+
+        // Render wishlist items
+        document.addEventListener('DOMContentLoaded', function () {
+            renderWishlist();
+        });
+
+        function renderWishlist() {
+            var grid = document.getElementById('wishlistGrid');
+            var subtitle = document.getElementById('wishlistSubtitle');
+            if (!grid || !window.ProductsCatalog) return;
+
+            var wishlist = [];
+            try { wishlist = JSON.parse(localStorage.getItem('tm_wishlist')) || []; } catch (e) { }
+
+            if (wishlist.length === 0) {
+                grid.innerHTML = '<div class="wishlist-empty">' +
+                    '<i class="fa-regular fa-heart"></i>' +
+                    '<p>Your wishlist is empty</p>' +
+                    '<a href="women-collection.html">EXPLORE COLLECTIONS</a>' +
+                    '</div>';
+                if (subtitle) subtitle.textContent = '0 items saved';
+                return;
+            }
+
+            var products = window.ProductsCatalog.filter(function (p) {
+                return wishlist.indexOf(p.id) > -1;
+            });
+
+            if (subtitle) subtitle.textContent = products.length + ' items saved';
+
+            if (products.length === 0) {
+                grid.innerHTML = '<div class="wishlist-empty">' +
+                    '<i class="fa-regular fa-heart"></i>' +
+                    '<p>Your wishlist is empty</p>' +
+                    '<a href="women-collection.html">EXPLORE COLLECTIONS</a>' +
+                    '</div>';
+                return;
+            }
+
+            var html = '';
+            products.forEach(function (p) {
+                var compareHtml = p.compareAtPrice
+                    ? '<span class="grid-compare-price">₹ ' + Number(p.compareAtPrice).toLocaleString('en-IN') + '</span>'
+                    : '';
+                html += '<div class="grid-product-card" style="position:relative;" data-id="' + p.id + '">' +
+                    '<a href="product.html?id=' + p.id + '">' +
+                    '<div class="grid-product-img">' +
+                    '<img src="' + p.images[0] + '" alt="' + p.name + '" loading="lazy">' +
+                    '</div>' +
+                    '</a>' +
+                    '<button class="wishlist-remove-btn" data-id="' + p.id + '" title="Remove">' +
+                    '<i class="fa-solid fa-xmark"></i>' +
+                    '</button>' +
+                    '<div class="grid-product-info">' +
+                    '<a href="product.html?id=' + p.id + '" style="text-decoration:none;color:inherit;">' +
+                    '<p class="grid-product-name">' + p.name + '</p>' +
+                    '</a>' +
+                    '<div class="grid-product-pricing">' +
+                    '<span class="grid-product-price">₹ ' + Number(p.price).toLocaleString('en-IN') + '</span>' +
+                    compareHtml +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            });
+
+            grid.innerHTML = html;
+
+            // Remove buttons
+            grid.querySelectorAll('.wishlist-remove-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var id = this.dataset.id;
+                    if (window.TMStore) window.TMStore.toggleWishlist(id);
+                    renderWishlist();
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

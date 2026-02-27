@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Book a Video Shopping Appointment – T&M Online Fashions. Shop live with our stylists.">
+    <link rel="stylesheet" href="./index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Video Shopping – T&M Online Fashions</title>
+</head>
+
+<body>
+
+    <!-- STICKY TOP BAR -->
+    <div class="sticky-top-bar">
+        <div class="promo-bar">
+            <span class="promo-icon">🌐</span>
+            <span class="promo-text">Unlocking Global Shopping with free world wide shipping</span>
+        </div>
+        <header class="header">
+            <div class="header-inner">
+                <button class="hamburger-toggle" id="hamburgerToggle" title="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <nav class="header-nav-left">
+                    <a href="women-collection.html" class="nav-pill active">WOMEN</a>
+                    <a href="men-collection.html" class="nav-link-top">MEN</a>
+                    <a href="sarees-collection.html" class="nav-link-top">BRIDAL</a>
+                </nav>
+                <div class="logo-wrap">
+                    <div class="logo-icon">✿</div>
+                    <a href="index.html" class="logo-text">T&amp;M Online Fashions</a>
+                </div>
+                <div class="header-icons">
+                    <div class="currency-selector">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <span>INR</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <button class="icon-btn" title="Search"
+                        onclick="document.getElementById('searchOverlay').classList.add('open')"><i
+                            class="fa-solid fa-magnifying-glass"></i><span class="icon-tooltip">Search</span></button>
+                    <button class="icon-btn icon-btn-video" title="Video Call"><i class="fa-solid fa-video"></i><span
+                            class="icon-tooltip">Video Shopping</span></button>
+                    <button class="icon-btn" title="WhatsApp" onclick="window.location.href='whatsapp.html'"><i
+                            class="fa-brands fa-whatsapp"></i><span class="icon-tooltip">+91 83419 52903</span></button>
+                    <button class="icon-btn" title="Wishlist" style="position: relative;"
+                        onclick="window.location.href='wishlist.html'">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="wishlist-badge" id="wishlistCount">0</span>
+                    </button>
+                    <button class="icon-btn" title="Account" onclick="window.location.href='login.html'"><i
+                            class="fa-regular fa-user"></i></button>
+                    <button class="icon-btn" title="Cart" style="position: relative;"><i
+                            class="fa-solid fa-bag-shopping"></i><span class="cart-count-badge"
+                            id="cartBadge">0</span></button>
+                </div>
+            </div>
+
+            <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+            <div class="mobile-nav-drawer" id="mobileNavDrawer">
+                <div class="mobile-nav-header">
+                    <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
+                    <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="women-collection.html" class="mobile-nav-link">WOMEN</a>
+                    <a href="men-collection.html" class="mobile-nav-link">MEN</a>
+                    <a href="sarees-collection.html" class="mobile-nav-link">BRIDAL</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="sarees-collection.html" class="mobile-nav-link">SAREES</a>
+                    <a href="lehenga-collection.html" class="mobile-nav-link">LEHENGA</a>
+                    <a href="men-collection.html" class="mobile-nav-link">MEN'S WEAR</a>
+                    <hr class="mobile-nav-divider">
+                    <a href="video-shopping.html" class="mobile-nav-link active">VIDEO SHOPPING</a>
+                    <a href="wishlist.html" class="mobile-nav-link">WISHLIST</a>
+                    <a href="login.html" class="mobile-nav-link">MY ACCOUNT</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- BANNER -->
+    <div class="vs-banner">
+        <img src="./images/banner-1.jpg" alt="Video Shopping Banner">
+    </div>
+
+    <!-- BOOKING FORM -->
+    <div class="vs-form-section">
+        <h1 class="vs-form-title">Book a Video Shopping Appointment</h1>
+
+        <form id="vsForm"
+            onsubmit="event.preventDefault(); alert('Appointment booked successfully! We will contact you shortly.'); this.reset();">
+            <!-- Contact Details -->
+            <h3 class="vs-section-heading">Contact Details</h3>
+            <div class="vs-form-grid">
+                <div class="vs-field">
+                    <label class="vs-label">Full Name *</label>
+                    <input type="text" class="vs-input" placeholder="Enter your full name" required>
+                </div>
+                <div class="vs-field">
+                    <label class="vs-label">Email Address *</label>
+                    <input type="email" class="vs-input" placeholder="Enter your email" required>
+                </div>
+                <div class="vs-field">
+                    <label class="vs-label">Contact Number *</label>
+                    <input type="tel" class="vs-input" placeholder="+91 XXXXX XXXXX" required>
+                </div>
+                <div class="vs-field">
+                    <label class="vs-label">Country</label>
+                    <select class="vs-select">
+                        <option value="">Select Country</option>
+                        <option value="IN">India</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AE">UAE</option>
+                        <option value="SG">Singapore</option>
+                        <option value="AU">Australia</option>
+                        <option value="CA">Canada</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr class="vs-divider">
+
+            <!-- Select Platform -->
+            <h3 class="vs-section-heading">Select Platform</h3>
+            <div class="vs-platform-options">
+                <label class="vs-platform-option">
+                    <input type="radio" name="platform" value="whatsapp" checked> <i class="fa-brands fa-whatsapp"
+                        style="color:#25d366;font-size:18px"></i> WhatsApp
+                </label>
+                <label class="vs-platform-option">
+                    <input type="radio" name="platform" value="zoom"> <i class="fa-solid fa-video"
+                        style="color:#2d8cff;font-size:16px"></i> Zoom
+                </label>
+                <label class="vs-platform-option">
+                    <input type="radio" name="platform" value="facetime"> <i class="fa-solid fa-phone"
+                        style="color:#34c759;font-size:16px"></i> FaceTime
+                </label>
+                <label class="vs-platform-option">
+                    <input type="radio" name="platform" value="instagram"> <i class="fa-brands fa-instagram"
+                        style="color:#e4405f;font-size:18px"></i> Instagram
+                </label>
+            </div>
+
+            <hr class="vs-divider">
+
+            <!-- Book Your Slot -->
+            <h3 class="vs-section-heading">Book Your Slot</h3>
+            <div class="vs-form-grid">
+                <div class="vs-field">
+                    <label class="vs-label">Date *</label>
+                    <input type="date" class="vs-input" required>
+                </div>
+                <div class="vs-field">
+                    <label class="vs-label">Start Time *</label>
+                    <input type="time" class="vs-input" required>
+                </div>
+                <div class="vs-field">
+                    <label class="vs-label">End Time</label>
+                    <input type="time" class="vs-input">
+                </div>
+                <div class="vs-field full">
+                    <label class="vs-label">Comments</label>
+                    <textarea class="vs-textarea" placeholder="Tell us what you're looking for..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="vs-submit-btn">BOOK AN APPOINTMENT</button>
+        </form>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 class="footer-heading">Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="women-collection.html">Women</a></li>
+                    <li><a href="sarees-collection.html">Sarees</a></li>
+                    <li><a href="lehenga-collection.html">Lehenga</a></li>
+                    <li><a href="men-collection.html">Men's Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <div class="footer-address">
+                    <strong>T&amp;M Online Fashions</strong><br>
+                    No.24, D'Souza Circle,<br>
+                    Richmond Road, Bangalore &ndash; 560047, India
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 T&amp;M Online Fashions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LOGIN MODAL -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal-container">
+            <button class="login-modal-close" onclick="closeLoginModal()">&times;</button>
+            <div class="login-modal-image">
+                <img src="./images/banner-3.jpg" alt="Login">
+            </div>
+            <div class="login-modal-content">
+                <!-- Sign In Form -->
+                <div id="signInSection">
+                    <div class="login-header">
+                        <h2>Sign In</h2>
+                        <p>Welcome back! Please sign in to your account.</p>
+                    </div>
+                    <form class="login-form"
+                        onsubmit="event.preventDefault(); alert('Login successful!'); closeLoginModal();">
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN IN</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Don't have an account? <a href="#" onclick="toggleSignup(event)">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div id="signUpSection" style="display: none;">
+                    <div class="login-header">
+                        <h2>Create Account</h2>
+                        <p>Join us today to unlock exclusive benefits.</p>
+                    </div>
+                    <form class="login-form"
+                        onsubmit="event.preventDefault(); alert('Registration successful!'); toggleSignup(event);">
+                        <div class="login-form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="login-modal-submit">SIGN UP</button>
+                    </form>
+                    <div class="login-modal-footer">
+                        Already have an account? <a href="#" onclick="toggleSignup(event)">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="login-social-grid">
+                    <button class="social-login-btn"><i class="fa-brands fa-google"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-x-twitter"></i></button>
+                    <button class="social-login-btn"><i class="fa-brands fa-facebook-f"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-overlay-close" id="searchOverlayClose">&times;</button>
+        <div class="search-overlay-inner">
+            <div class="search-overlay-top">
+                <i class="fa-solid fa-magnifying-glass search-overlay-icon"></i>
+                <input type="text" class="search-overlay-input" id="searchInput" placeholder="Search by Products"
+                    autocomplete="off">
+            </div>
+            <p class="search-overlay-hint">The New Products Appear</p>
+        </div>
+        <div class="search-overlay-results" id="searchResults"></div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <span class="cart-drawer-title"><i class="fa-solid fa-bag-shopping"></i> Your Cart</span>
+            <button class="cart-drawer-close" id="cartDrawerClose">&times;</button>
+        </div>
+        <div class="cart-drawer-body" id="cartDrawerContent"></div>
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Subtotal</span>
+                <span class="cart-summary-total" id="cartDrawerTotal">₹ 0</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">
+                <i class="fa-solid fa-lock"></i> PROCEED TO CHECKOUT
+            </button>
+        </div>
+    </div>
+
+    <script src="./shopify.config.js"></script>
+    <script src="./shopify-buy.js"></script>
+    <script src="./products-data.js"></script>
+    <script src="./store.js"></script>
+    <script src="./search.js"></script>
+    <script>
+        (function () {
+            const hamburger = document.getElementById('hamburgerToggle');
+            const drawer = document.getElementById('mobileNavDrawer');
+            const backdrop = document.getElementById('mobileNavBackdrop');
+            const closeBtn = document.getElementById('mobileNavClose');
+            if (!hamburger || !drawer || !backdrop || !closeBtn) return;
+            function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+            hamburger.addEventListener('click', openDrawer);
+            closeBtn.addEventListener('click', closeDrawer);
+            backdrop.addEventListener('click', closeDrawer);
+            window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
+        })();
+    </script>
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        window.onclick = function (event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeLoginModal();
+            }
+        }
+        function toggleSignup(e) {
+            if (e) e.preventDefault();
+            const signIn = document.getElementById('signInSection');
+            const signUp = document.getElementById('signUpSection');
+            if (signIn.style.display === 'none') {
+                signIn.style.display = 'block';
+                signUp.style.display = 'none';
+            } else {
+                signIn.style.display = 'none';
+                signUp.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
