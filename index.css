@@ -5198,6 +5198,15 @@ button {
     margin-left: 8px;
 }
 
+.logo-text-whatsapp {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
 @media (max-width: 992px) {
     .login-modal-container {
         max-width: 500px;
@@ -5223,6 +5232,15 @@ button {
         display: none;
         /* Hide number on very small screens to save space */
     }
-}
 
-/
+    .header-icons .icon-btn-video,
+    .header-icons .icon-btn[title="Wishlist"] {
+        display: none !important;
+    }
+
+    /* Hide extraneous sections on video shopping page on mobile */
+    .desktop-only-video-page {
+        display: none !important;
+    }
+
+}
