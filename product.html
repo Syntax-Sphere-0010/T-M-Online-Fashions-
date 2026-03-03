@@ -50,10 +50,30 @@
 
                 <!-- Right Icons -->
                 <div class="header-icons">
-                    <div class="currency-selector">
+                    <div class="currency-selector" id="currencySelector" onclick="toggleCurrencyDropdown(event)">
                         <i class="fa-regular fa-credit-card"></i>
-                        <span>INR</span>
+                        <span id="currencyLabel">INR</span>
                         <i class="fa-solid fa-chevron-down"></i>
+                        <div class="currency-dropdown" id="currencyDropdown">
+                            <div class="currency-option active" data-currency="INR" data-symbol="₹" data-rate="1"
+                                onclick="selectCurrency(event, 'INR', '₹', 1)">🇮🇳 INR – Indian Rupee</div>
+                            <div class="currency-option" data-currency="USD" data-symbol="$" data-rate="0.012"
+                                onclick="selectCurrency(event, 'USD', '$', 0.012)">🇺🇸 USD – US Dollar</div>
+                            <div class="currency-option" data-currency="EUR" data-symbol="€" data-rate="0.011"
+                                onclick="selectCurrency(event, 'EUR', '€', 0.011)">🇪🇺 EUR – Euro</div>
+                            <div class="currency-option" data-currency="GBP" data-symbol="£" data-rate="0.0095"
+                                onclick="selectCurrency(event, 'GBP', '£', 0.0095)">🇬🇧 GBP – British Pound</div>
+                            <div class="currency-option" data-currency="AED" data-symbol="AED" data-rate="0.044"
+                                onclick="selectCurrency(event, 'AED', 'AED', 0.044)">🇦🇪 AED – UAE Dirham</div>
+                            <div class="currency-option" data-currency="SAR" data-symbol="SAR" data-rate="0.045"
+                                onclick="selectCurrency(event, 'SAR', 'SAR', 0.045)">🇸🇦 SAR – Saudi Riyal</div>
+                            <div class="currency-option" data-currency="SGD" data-symbol="S$" data-rate="0.016"
+                                onclick="selectCurrency(event, 'SGD', 'S$', 0.016)">🇸🇬 SGD – Singapore Dollar</div>
+                            <div class="currency-option" data-currency="CAD" data-symbol="C$" data-rate="0.016"
+                                onclick="selectCurrency(event, 'CAD', 'C$', 0.016)">🇨🇦 CAD – Canadian Dollar</div>
+                            <div class="currency-option" data-currency="AUD" data-symbol="A$" data-rate="0.018"
+                                onclick="selectCurrency(event, 'AUD', 'A$', 0.018)">🇦🇺 AUD – Australian Dollar</div>
+                        </div>
                     </div>
                     <button class="icon-btn" title="Search"
                         onclick="document.getElementById('searchOverlay').classList.add('open')"><i
@@ -84,15 +104,16 @@
                     <div class="mobile-nav-logo">T&amp;M Online Fashions</div>
                     <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
                 </div>
-<nav class="mobile-nav-links">
+                <nav class="mobile-nav-links">
                     <!-- Top Auth Banner -->
                     <div class="mobile-nav-top-banner">
                         <p>Ready to shop great deals?</p>
-                        <a href="#" class="mobile-nav-auth-btn" onclick="openLoginModal(); closeDrawer && closeDrawer();">
+                        <a href="#" class="mobile-nav-auth-btn"
+                            onclick="openLoginModal(); closeDrawer && closeDrawer();">
                             Sign In / Register <i class="fa-solid fa-chevron-right"></i>
                         </a>
                     </div>
-                    
+
                     <!-- My Orders -->
                     <a href="#" class="mobile-nav-orders-link">
                         My Orders <i class="fa-solid fa-chevron-right"></i>
@@ -107,10 +128,14 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> LATEST SAREES</a>
-                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGAS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> TRENDING GOWNS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> FESTIVE COLLECTION</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> LATEST SAREES</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> DESIGNER LEHENGAS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> TRENDING
+                                        GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> FESTIVE
+                                        COLLECTION</a>
                                 </div>
                             </div>
                         </li>
@@ -122,11 +147,16 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KANCHIPURAM SAREE</a>
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BANARASI SAREE</a>
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER SAREE</a>
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE HANDLOOM SILK SAREE</a>
-                                    <a href="sarees-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PURE PRINTED SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> KANCHIPURAM SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> BANARASI SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> DESIGNER SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> PURE HANDLOOM SILK SAREE</a>
+                                    <a href="sarees-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> PURE PRINTED SAREE</a>
                                 </div>
                             </div>
                         </li>
@@ -138,10 +168,14 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> ANARKALI SUITS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PALAZZO SUITS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> STRAIGHT CUT SUITS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> CHURIDAR SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> ANARKALI
+                                        SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PALAZZO
+                                        SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> STRAIGHT CUT
+                                        SUITS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> CHURIDAR
+                                        SUITS</a>
                                 </div>
                             </div>
                         </li>
@@ -153,9 +187,12 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> BRIDAL LEHENGA</a>
-                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR LEHENGA</a>
-                                    <a href="lehenga-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> BRIDAL LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> PARTY WEAR LEHENGA</a>
+                                    <a href="lehenga-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> DESIGNER LEHENGA</a>
                                 </div>
                             </div>
                         </li>
@@ -167,9 +204,12 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR GOWNS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER GOWNS</a>
-                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> PARTY WEAR
+                                        GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> DESIGNER
+                                        GOWNS</a>
+                                    <a href="#" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN
+                                        GOWNS</a>
                                 </div>
                             </div>
                         </li>
@@ -181,23 +221,31 @@
                             </button>
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
-                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> SHERWANIS</a>
-                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> KURTA PYJAMA</a>
-                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> INDO-WESTERN</a>
-                                    <a href="men-collection.html" class="accordion-sublink"><i class="fa-solid fa-plus"></i> NEHRU JACKETS</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> SHERWANIS</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> KURTA PYJAMA</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> INDO-WESTERN</a>
+                                    <a href="men-collection.html" class="accordion-sublink"><i
+                                            class="fa-solid fa-plus"></i> NEHRU JACKETS</a>
                                 </div>
                             </div>
                         </li>
 
                         <!-- Utilities -->
-                         <li class="accordion-item" style="margin-top: 15px;">
-                            <a href="video-shopping.html" class="accordion-header" style="text-decoration:none;"><i class="fa-solid fa-video"></i> VIDEO SHOPPING</a>
+                        <li class="accordion-item" style="margin-top: 15px;">
+                            <a href="video-shopping.html" class="accordion-header" style="text-decoration:none;"><i
+                                    class="fa-solid fa-video"></i> VIDEO SHOPPING</a>
                         </li>
                         <li class="accordion-item">
-                            <a href="wishlist.html" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-heart"></i> WISHLIST</a>
+                            <a href="wishlist.html" class="accordion-header" style="text-decoration:none;"><i
+                                    class="fa-regular fa-heart"></i> WISHLIST</a>
                         </li>
                         <li class="accordion-item">
-                            <a href="#" onclick="openLoginModal(); closeDrawer && closeDrawer();" class="accordion-header" style="text-decoration:none;"><i class="fa-regular fa-user"></i> MY ACCOUNT</a>
+                            <a href="#" onclick="openLoginModal(); closeDrawer && closeDrawer();"
+                                class="accordion-header" style="text-decoration:none;"><i
+                                    class="fa-regular fa-user"></i> MY ACCOUNT</a>
                         </li>
                     </ul>
                 </nav>
@@ -347,14 +395,20 @@
                 </div>
                 <span class="cat-dot">●</span>
                 <div class="cat-item">
-                    <a href="#" class="cat-link">INSTASHOP</a>
+                    <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" class="cat-link"
+                        target="_blank">INSTASHOP</a>
                     <div class="mega-menu">
                         <div class="mega-menu-links">
                             <div class="mega-col">
                                 <h4 class="mega-heading">INSTASHOP</h4>
-                                <a href="#">Shop by Instagram</a>
-                                <a href="#">Celeb Styles</a>
-                                <a href="#">Trending Looks</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i> Follow on Instagram</a>
+                                <a href="https://youtube.com/@skweaves?si=gNNct7yrLHwCKsIp" target="_blank"><i
+                                        class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4"
+                                    target="_blank">Celeb Styles</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4"
+                                    target="_blank">Trending Looks</a>
                             </div>
                         </div>
                         <div class="mega-menu-img">
@@ -455,9 +509,11 @@
                 <div class="footer-socials">
                     <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="social-icon tw"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" class="social-icon ig"
+                        target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="social-icon pin"><i class="fa-brands fa-pinterest-p"></i></a>
-                    <a href="#" class="social-icon yt"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://youtube.com/@skweaves?si=gNNct7yrLHwCKsIp" class="social-icon yt"
+                        target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 </div>
                 <a href="#" class="footer-whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                 <p class="footer-address">
@@ -513,14 +569,15 @@
             <div class="login-modal-image">
                 <img src="./images/banner-3.jpg" alt="Login">
             </div>
-                        <div class="login-modal-content">
+            <div class="login-modal-content">
                 <!-- Sign In Form -->
                 <div id="signInSection">
                     <div class="login-header">
                         <h2>Sign In</h2>
                         <p>Welcome back! Please sign in to your account.</p>
                     </div>
-                    <form class="login-form" onsubmit="event.preventDefault(); alert('Login successful!'); closeLoginModal();">
+                    <form class="login-form"
+                        onsubmit="event.preventDefault(); alert('Login successful!'); closeLoginModal();">
                         <div class="login-form-group">
                             <label>Email Address</label>
                             <input type="email" placeholder="example@mail.com" required>
@@ -542,7 +599,8 @@
                         <h2>Create Account</h2>
                         <p>Join us today to unlock exclusive benefits.</p>
                     </div>
-                    <form class="login-form" onsubmit="event.preventDefault(); alert('Registration successful!'); toggleSignup(event);">
+                    <form class="login-form"
+                        onsubmit="event.preventDefault(); alert('Registration successful!'); toggleSignup(event);">
                         <div class="login-form-group">
                             <label>Full Name</label>
                             <input type="text" placeholder="John Doe" required>
@@ -592,6 +650,36 @@
             if (event.target == modal) {
                 closeLoginModal();
             }
+            // Close currency dropdown when clicking outside
+            const dd = document.getElementById('currencyDropdown');
+            const selector = document.getElementById('currencySelector');
+            if (dd && selector && !selector.contains(event.target)) {
+                dd.classList.remove('open');
+            }
+        }
+
+        // ── Currency switcher ──
+        function toggleCurrencyDropdown(e) {
+            e.stopPropagation();
+            const dd = document.getElementById('currencyDropdown');
+            if (dd) dd.classList.toggle('open');
+        }
+
+        function selectCurrency(e, code, symbol, rate) {
+            e.stopPropagation();
+            document.getElementById('currencyLabel').textContent = code;
+            // Update all prices that have a data-base-price attribute
+            document.querySelectorAll('[data-base-price]').forEach(function (el) {
+                const base = parseFloat(el.getAttribute('data-base-price'));
+                if (!isNaN(base)) {
+                    const converted = (base * rate).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+                    el.textContent = symbol + ' ' + converted;
+                }
+            });
+            document.querySelectorAll('.currency-option').forEach(function (opt) {
+                opt.classList.toggle('active', opt.dataset.currency === code);
+            });
+            document.getElementById('currencyDropdown').classList.remove('open');
         }
     </script>
     <script src="./product.js"></script>
@@ -612,11 +700,11 @@
     </script>
     <!-- Accordion Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const accordionHeaders = document.querySelectorAll('.accordion-header');
-            
+
             accordionHeaders.forEach(header => {
-                header.addEventListener('click', function(e) {
+                header.addEventListener('click', function (e) {
                     // Prevent default if it's a button
                     if (this.tagName.toLowerCase() === 'button') {
                         e.preventDefault();
@@ -628,12 +716,12 @@
                     const item = this.parentElement;
                     const content = item.querySelector('.accordion-content');
                     const icon = this.querySelector('i.fa-plus, i.fa-minus');
-                    
+
                     // Toggle current item
                     if (item.classList.contains('active')) {
                         item.classList.remove('active');
                         content.style.maxHeight = null;
-                        if(icon) {
+                        if (icon) {
                             icon.classList.remove('fa-minus');
                             icon.classList.add('fa-plus');
                         }
@@ -643,15 +731,15 @@
                             openItem.classList.remove('active');
                             openItem.querySelector('.accordion-content').style.maxHeight = null;
                             const openIcon = openItem.querySelector('.accordion-header i.fa-minus');
-                            if(openIcon) {
+                            if (openIcon) {
                                 openIcon.classList.remove('fa-minus');
                                 openIcon.classList.add('fa-plus');
                             }
                         });
-                        
+
                         item.classList.add('active');
                         content.style.maxHeight = content.scrollHeight + "px";
-                        if(icon) {
+                        if (icon) {
                             icon.classList.remove('fa-plus');
                             icon.classList.add('fa-minus');
                         }

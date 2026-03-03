@@ -55,7 +55,7 @@ function renderBreadcrumb(product) {
 }
 
 // ===========================
-//  RENDER IMAGE GALLERY
+//  RENDER IMAGE GALLERY (with zoom)
 // ===========================
 function renderGallery(product) {
     const el = document.getElementById('pdpGallery');
@@ -69,14 +69,18 @@ function renderGallery(product) {
 
     el.innerHTML = `
         <div class="pdp-thumbs-col">${thumbs}</div>
-        <div class="pdp-main-image-wrap">
+        <div class="pdp-main-image-wrap" id="pdpMainWrap">
             <img src="${product.images[0]}" alt="${product.name}" class="pdp-main-image" id="pdpMainImage">
+        </div>
+        <div class="pdp-zoom-panel" id="pdpZoomPanel">
+            <img src="${product.images[0]}" alt="${product.name} zoom" id="pdpZoomImage">
         </div>
     `;
 
     // Thumbnail click handler
     const thumbEls = el.querySelectorAll('.pdp-thumb');
     const mainImg = document.getElementById('pdpMainImage');
+    const zoomImg = document.getElementById('pdpZoomImage');
 
     thumbEls.forEach(th => {
         th.addEventListener('click', function () {
@@ -84,20 +88,47 @@ function renderGallery(product) {
             thumbEls.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             mainImg.src = product.images[idx];
+            zoomImg.src = product.images[idx];
         });
     });
+
+    // Image zoom on hover (desktop only)
+    const mainWrap = document.getElementById('pdpMainWrap');
+    const zoomPanel = document.getElementById('pdpZoomPanel');
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    if (mainWrap && zoomPanel) {
+        mainWrap.addEventListener('mouseenter', function () {
+            if (!isMobile()) {
+                zoomPanel.classList.add('visible');
+            }
+        });
+        mainWrap.addEventListener('mouseleave', function () {
+            zoomPanel.classList.remove('visible');
+        });
+
+        // Move zoom position to follow cursor
+        mainWrap.addEventListener('mousemove', function (e) {
+            if (isMobile()) return;
+            const rect = mainWrap.getBoundingClientRect();
+            const xPct = ((e.clientX - rect.left) / rect.width) * 100;
+            const yPct = ((e.clientY - rect.top) / rect.height) * 100;
+            zoomImg.style.transformOrigin = `${xPct}% ${yPct}%`;
+        });
+    }
 }
 
 // ===========================
-//  RENDER PRODUCT INFO (Samyakk style)
+//  RENDER PRODUCT INFO (Redesigned)
 // ===========================
 function renderProductInfo(product) {
     const el = document.getElementById('pdpInfo');
     if (!el) return;
 
-    // Size dropdown options
+    // Size dropdown options with prices
     const sizeOpts = product.sizes.map(s =>
-        `<option value="${s.value}">${s.label}</option>`
+        `<div class="pdp-size-btn" data-value="${s.value}" data-price="${s.price || product.price}">${s.label}${s.price ? ' – ' + formatPrice(s.price, product.currency) : ''}</div>`
     ).join('');
 
     el.innerHTML = `
@@ -105,16 +136,22 @@ function renderProductInfo(product) {
 
             <!-- Title row with share & wishlist -->
             <div class="pdp-title-row">
-                <h1 class="pdp-title">${product.name}- ${product.sku}</h1>
+                <h1 class="pdp-title">${product.name} – ${product.sku}</h1>
                 <div class="pdp-title-actions">
-                    <button class="pdp-icon-action" id="pdpShareBtn" title="Share"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
-                    <button class="pdp-icon-action" id="pdpWishlistBtn" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="pdp-icon-action pdp-share-btn" id="pdpShareBtn" title="Share">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        <span class="pdp-action-tooltip">Share</span>
+                    </button>
+                    <button class="pdp-icon-action pdp-wishlist-action" id="pdpWishlistBtn" title="Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="pdp-action-tooltip">Wishlist</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Price + delivery -->
             <div class="pdp-price-row">
-                <span class="pdp-price">${formatPrice(product.price, product.currency)}</span>
+                <span class="pdp-price" data-base-price="${product.price}">${formatPrice(product.price, product.currency)}</span>
                 <span class="pdp-delivery-days">${product.deliveryDays}</span>
             </div>
 
@@ -145,27 +182,31 @@ function renderProductInfo(product) {
                 Secured by <strong>Razorpay</strong>
             </div>
 
-            <!-- Size selector (dropdown) -->
-            <div class="pdp-size-group">
-                <label class="pdp-size-label">Size <span class="pdp-required">*</span></label>
-                <div class="pdp-select-wrap">
-                    <select class="pdp-size-select" id="pdpSizeSelect">${sizeOpts}</select>
-                    <i class="fa-solid fa-chevron-down pdp-select-arrow"></i>
+            <!-- Size + Pincode side by side (no full border, only border-bottom) -->
+            <div class="pdp-size-pincode-row">
+                <!-- Size selector -->
+                <div class="pdp-size-group pdp-side-box">
+                    <label class="pdp-side-label">SIZE <span class="pdp-required">*</span></label>
+                    <input type="hidden" id="pdpSizeSelect" value="${product.sizes[0]?.value || 'FREE'}">
+                    <div class="pdp-size-btn-wrap" id="pdpSizeBtnWrap" onclick="toggleSizeDropdown()">
+                        <span id="pdpSizeSelectedLabel">${product.sizes[0]?.label || 'Select Size'}</span>
+                        <i class="fa-solid fa-chevron-down pdp-side-chevron"></i>
+                    </div>
+                    <div class="pdp-size-dropdown" id="pdpSizeDropdown">
+                        ${sizeOpts}
+                    </div>
+                    <a href="#" class="pdp-measure-link">${product.measurementLink}</a>
                 </div>
-                <a href="#" class="pdp-measure-link">${product.measurementLink}</a>
-            </div>
 
-            <!-- COD Pincode check -->
-            <div class="pdp-cod-section">
-                <div class="pdp-cod-header">
-                    <span class="pdp-cod-title">Check Delivery for COD (India)</span>
-                    <a href="#" class="pdp-store-locator">Store Locator</a>
+                <!-- COD Pincode check -->
+                <div class="pdp-cod-section pdp-side-box">
+                    <label class="pdp-side-label">PINCODE</label>
+                    <div class="pdp-pincode-row">
+                        <input type="text" class="pdp-pincode-input" id="pdpPincodeInput" placeholder="Enter pincode..." maxlength="6">
+                        <button class="pdp-pincode-btn" id="pdpPincodeBtn">Check</button>
+                    </div>
+                    <p class="pdp-pincode-result" id="pdpPincodeResult"></p>
                 </div>
-                <div class="pdp-pincode-row">
-                    <input type="text" class="pdp-pincode-input" id="pdpPincodeInput" placeholder="Enter Pincode here..." maxlength="6">
-                    <button class="pdp-pincode-btn" id="pdpPincodeBtn">Check Now</button>
-                </div>
-                <p class="pdp-pincode-result" id="pdpPincodeResult"></p>
             </div>
 
             <!-- Delivery Info -->
@@ -180,7 +221,7 @@ function renderProductInfo(product) {
                 </div>
             </div>
 
-            <!-- Action buttons -->
+            <!-- Action buttons (side by side on both desktop and mobile) -->
             <div class="pdp-action-buttons">
                 <button class="pdp-add-to-cart" id="pdpAddToCart">
                     <i class="fa-solid fa-bag-shopping"></i> ADD TO CART
@@ -209,38 +250,82 @@ function renderProductInfo(product) {
         </div>
     `;
 
-    // --- Interactive Handlers ---
+    // --- Size dropdown toggle ---
+    window.toggleSizeDropdown = function () {
+        const dd = document.getElementById('pdpSizeDropdown');
+        if (dd) dd.classList.toggle('open');
+    };
 
-    // Wishlist toggle
+    // Size button selection
+    document.querySelectorAll('.pdp-size-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            document.querySelectorAll('.pdp-size-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('pdpSizeSelect').value = this.dataset.value;
+            document.getElementById('pdpSizeSelectedLabel').textContent = this.textContent;
+            document.getElementById('pdpSizeDropdown').classList.remove('open');
+        });
+    });
+
+    // Close size dropdown on outside click
+    document.addEventListener('click', function (e) {
+        const wrap = document.getElementById('pdpSizeBtnWrap');
+        const dd = document.getElementById('pdpSizeDropdown');
+        if (dd && wrap && !wrap.contains(e.target)) {
+            dd.classList.remove('open');
+        }
+    });
+
+    // --- Wishlist toggle with animation ---
     const wishBtn = document.getElementById('pdpWishlistBtn');
     let wishlisted = false;
     wishBtn.addEventListener('click', function () {
         wishlisted = !wishlisted;
         const icon = this.querySelector('i');
+        this.classList.toggle('active', wishlisted);
         if (wishlisted) {
             icon.classList.replace('fa-regular', 'fa-solid');
-            icon.style.color = '#ff3b3b';
+            icon.style.color = '#e63946';
+            // Pulse animation
+            this.classList.add('pulse');
+            setTimeout(() => this.classList.remove('pulse'), 400);
         } else {
             icon.classList.replace('fa-solid', 'fa-regular');
             icon.style.color = '';
         }
     });
 
-    // Add to cart — wired to TMStore
-    document.getElementById('pdpAddToCart').addEventListener('click', function () {
-        var sizeSelect = document.getElementById('pdpSizeSelect');
-        var selectedSize = sizeSelect ? sizeSelect.value : 'FREE';
-        if (!selectedSize) {
-            sizeSelect.focus();
-            sizeSelect.style.borderColor = '#e53935';
-            setTimeout(function () { sizeSelect.style.borderColor = ''; }, 2000);
-            return;
+    // --- Share toggle ---
+    const shareBtn = document.getElementById('pdpShareBtn');
+    shareBtn.addEventListener('click', function () {
+        if (navigator.share) {
+            navigator.share({ title: product.name, url: window.location.href }).catch(() => { });
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                this.classList.add('shared');
+                const icon = this.querySelector('i');
+                icon.classList.replace('fa-arrow-up-from-bracket', 'fa-check');
+                this.querySelector('.pdp-action-tooltip').textContent = 'Copied!';
+                setTimeout(() => {
+                    this.classList.remove('shared');
+                    icon.classList.replace('fa-check', 'fa-arrow-up-from-bracket');
+                    this.querySelector('.pdp-action-tooltip').textContent = 'Share';
+                }, 2000);
+            }).catch(() => { });
         }
+    });
+
+    // --- Add to cart — wired to TMStore ---
+    document.getElementById('pdpAddToCart').addEventListener('click', function () {
+        var sizeVal = document.getElementById('pdpSizeSelect').value;
+        if (!sizeVal) sizeVal = 'FREE';
         if (window.TMStore) {
-            window.TMStore.addToCart(product.id, selectedSize, 1);
+            window.TMStore.addToCart(product.id, sizeVal, 1);
         }
         this.classList.add('added');
-        this.innerHTML = '<i class="fa-solid fa-check"></i> ADDED TO CART';
+        this.innerHTML = '<i class="fa-solid fa-check"></i> ADDED!';
         var btn = this;
         setTimeout(function () {
             btn.classList.remove('added');
@@ -248,37 +333,30 @@ function renderProductInfo(product) {
         }, 2000);
     });
 
-    // Buy Now — add to cart + go to checkout
+    // --- Buy Now ---
     var buyNowBtn = document.getElementById('pdpBuyNow');
     if (buyNowBtn) {
         buyNowBtn.addEventListener('click', function () {
-            var sizeSelect = document.getElementById('pdpSizeSelect');
-            var selectedSize = sizeSelect ? sizeSelect.value : 'FREE';
-            if (!selectedSize) {
-                sizeSelect.focus();
-                sizeSelect.style.borderColor = '#e53935';
-                setTimeout(function () { sizeSelect.style.borderColor = ''; }, 2000);
-                return;
-            }
+            var sizeVal = document.getElementById('pdpSizeSelect').value;
+            if (!sizeVal) sizeVal = 'FREE';
             if (window.TMStore) {
-                window.TMStore.addToCart(product.id, selectedSize, 1);
+                window.TMStore.addToCart(product.id, sizeVal, 1);
                 window.TMStore.goToCheckout();
             }
         });
     }
 
-    // Pincode check
+    // --- Pincode check ---
     document.getElementById('pdpPincodeBtn').addEventListener('click', function () {
         const pincode = document.getElementById('pdpPincodeInput').value.trim();
         const result = document.getElementById('pdpPincodeResult');
         if (pincode.length !== 6 || isNaN(pincode)) {
-            result.innerHTML = '<span class="pdp-pin-error"><i class="fa-solid fa-circle-xmark"></i> Please enter a valid 6-digit pincode</span>';
+            result.innerHTML = '<span class="pdp-pin-error"><i class="fa-solid fa-circle-xmark"></i> Enter a valid 6-digit pincode</span>';
         } else {
-            result.innerHTML = '<span class="pdp-pin-success"><i class="fa-solid fa-circle-check"></i> COD available for pincode ' + pincode + '. Estimated delivery: ' + product.deliveryDays + '</span>';
+            result.innerHTML = '<span class="pdp-pin-success"><i class="fa-solid fa-circle-check"></i> COD available! Est. ' + product.deliveryDays + '</span>';
         }
     });
 
-    // Enter key on pincode
     document.getElementById('pdpPincodeInput').addEventListener('keydown', function (e) {
         if (e.key === 'Enter') document.getElementById('pdpPincodeBtn').click();
     });
@@ -340,26 +418,26 @@ function renderRelatedProducts(products) {
     if (!el) return;
 
     const cards = products.map(p => `
-        <a href="${p.link}" class="pdp-related-card">
+        <div class="pdp-related-card" onclick="window.location.href='${p.link}'" style="cursor:pointer">
             <div class="pdp-related-img">
                 <img src="${p.image}" alt="${p.name}" loading="lazy">
-                <button class="wishlist-btn pdp-related-wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="wishlist-btn pdp-related-wishlist" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
             </div>
             <div class="pdp-related-info">
                 <p class="pdp-related-name">${p.name}</p>
                 <p class="pdp-related-price">${formatPrice(p.price)}</p>
+                <div class="product-card-actions" style="margin-top:8px">
+                    <button class="card-add-to-cart" onclick="event.stopPropagation(); if(window.TMStore) window.TMStore.addToCart('${p.id}','FREE',1)"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                    <button class="card-buy-now" onclick="event.stopPropagation(); window.location.href='${p.link}'"><i class="fa-solid fa-bolt"></i> Buy Now</button>
+                </div>
             </div>
-        </a>
+        </div>
     `).join('');
 
     el.innerHTML = `
         <div class="pdp-related-container">
             <div class="pdp-related-header">
                 <h2 class="section-title-alt">You May Also Like</h2>
-                <div class="carousel-nav">
-                    <button class="nav-btn prev" id="relatedPrev">&#8249;</button>
-                    <button class="nav-btn next" id="relatedNext">&#8250;</button>
-                </div>
             </div>
             <div class="pdp-related-viewport">
                 <div class="pdp-related-track" id="relatedTrack">
@@ -368,33 +446,6 @@ function renderRelatedProducts(products) {
             </div>
         </div>
     `;
-
-    // Carousel logic
-    const track = document.getElementById('relatedTrack');
-    const prevBtn = document.getElementById('relatedPrev');
-    const nextBtn = document.getElementById('relatedNext');
-
-    if (!track || !prevBtn || !nextBtn) return;
-
-    let scrollAmount = 0;
-    const cardWidth = 260 + 20;
-
-    nextBtn.addEventListener('click', () => {
-        const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-        if (scrollAmount < maxScroll) {
-            scrollAmount += cardWidth;
-            if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-            track.style.transform = `translateX(-${scrollAmount}px)`;
-        }
-    });
-
-    prevBtn.addEventListener('click', () => {
-        if (scrollAmount > 0) {
-            scrollAmount -= cardWidth;
-            if (scrollAmount < 0) scrollAmount = 0;
-            track.style.transform = `translateX(-${scrollAmount}px)`;
-        }
-    });
 
     // Wishlist buttons in related
     el.querySelectorAll('.pdp-related-wishlist').forEach(btn => {

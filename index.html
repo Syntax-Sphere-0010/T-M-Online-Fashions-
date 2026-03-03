@@ -50,10 +50,30 @@
 
                 <!-- Right Icons -->
                 <div class="header-icons">
-                    <div class="currency-selector">
+                    <div class="currency-selector" id="currencySelector" onclick="toggleCurrencyDropdown(event)">
                         <i class="fa-regular fa-credit-card"></i>
-                        <span>INR</span>
+                        <span id="currencyLabel">INR</span>
                         <i class="fa-solid fa-chevron-down"></i>
+                        <div class="currency-dropdown" id="currencyDropdown">
+                            <div class="currency-option active" data-currency="INR" data-symbol="₹" data-rate="1"
+                                onclick="selectCurrency(event, 'INR', '₹', 1)">🇮🇳 INR – Indian Rupee</div>
+                            <div class="currency-option" data-currency="USD" data-symbol="$" data-rate="0.012"
+                                onclick="selectCurrency(event, 'USD', '$', 0.012)">🇺🇸 USD – US Dollar</div>
+                            <div class="currency-option" data-currency="EUR" data-symbol="€" data-rate="0.011"
+                                onclick="selectCurrency(event, 'EUR', '€', 0.011)">🇪🇺 EUR – Euro</div>
+                            <div class="currency-option" data-currency="GBP" data-symbol="£" data-rate="0.0095"
+                                onclick="selectCurrency(event, 'GBP', '£', 0.0095)">🇬🇧 GBP – British Pound</div>
+                            <div class="currency-option" data-currency="AED" data-symbol="AED" data-rate="0.044"
+                                onclick="selectCurrency(event, 'AED', 'AED', 0.044)">🇦🇪 AED – UAE Dirham</div>
+                            <div class="currency-option" data-currency="SAR" data-symbol="SAR" data-rate="0.045"
+                                onclick="selectCurrency(event, 'SAR', 'SAR', 0.045)">🇸🇦 SAR – Saudi Riyal</div>
+                            <div class="currency-option" data-currency="SGD" data-symbol="S$" data-rate="0.016"
+                                onclick="selectCurrency(event, 'SGD', 'S$', 0.016)">🇸🇬 SGD – Singapore Dollar</div>
+                            <div class="currency-option" data-currency="CAD" data-symbol="C$" data-rate="0.016"
+                                onclick="selectCurrency(event, 'CAD', 'C$', 0.016)">🇨🇦 CAD – Canadian Dollar</div>
+                            <div class="currency-option" data-currency="AUD" data-symbol="A$" data-rate="0.018"
+                                onclick="selectCurrency(event, 'AUD', 'A$', 0.018)">🇦🇺 AUD – Australian Dollar</div>
+                        </div>
                     </div>
                     <button class="icon-btn" title="Search"
                         onclick="document.getElementById('searchOverlay').classList.add('open')"><i
@@ -375,14 +395,20 @@
                 </div>
                 <span class="cat-dot">●</span>
                 <div class="cat-item">
-                    <a href="#" class="cat-link">INSTASHOP</a>
+                    <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" class="cat-link"
+                        target="_blank">INSTASHOP</a>
                     <div class="mega-menu">
                         <div class="mega-menu-links">
                             <div class="mega-col">
                                 <h4 class="mega-heading">INSTASHOP</h4>
-                                <a href="#">Shop by Instagram</a>
-                                <a href="#">Celeb Styles</a>
-                                <a href="#">Trending Looks</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i> Follow on Instagram</a>
+                                <a href="https://youtube.com/@skweaves?si=gNNct7yrLHwCKsIp" target="_blank"><i
+                                        class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4"
+                                    target="_blank">Celeb Styles</a>
+                                <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4"
+                                    target="_blank">Trending Looks</a>
                             </div>
                         </div>
                         <div class="mega-menu-img">
@@ -401,7 +427,7 @@
         <a href="sarees-collection.html" class="mobile-tab">BRIDAL</a>
     </div>
 
-            <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
+    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
     <div class="mobile-category-circles">
         <a href="sarees-collection.html" class="category-circle">
             <div class="category-circle-img">
@@ -586,92 +612,144 @@
     <section class="new-arrivals">
         <div class="new-arrivals-header">
             <h2 class="section-title-alt">New Arrivals</h2>
-            <div class="carousel-nav">
-                <button class="nav-btn prev" id="arrivalsPrev">&#8249;</button>
-                <button class="nav-btn next" id="arrivalsNext">&#8250;</button>
-            </div>
         </div>
-        <div class="carousel-container">
+        <div class="carousel-container arrivals-scroll-container">
             <div class="carousel-track" id="arrivalsTrack">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=SR1001'">
                     <div class="product-media">
                         <img src="./images/image-1.webp" alt="Red Crepe Ready To Wear Saree">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Red Crepe Ready To Wear Saree with Silk Blouse and Embroidery</p>
-                        <p class="product-price">&#8377; 15,990</p>
+                        <p class="product-price" data-base-price="15990">&#8377; 15,990</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('SR1001')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('SR1001')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=SR1002'">
                     <div class="product-media">
                         <img src="./images/image-2.webp" alt="Black Lycra Ready To Wear Saree">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Black Lycra Ready To Wear Saree with Embroidered Sleeveless Blouse</p>
-                        <p class="product-price">&#8377; 18,490</p>
+                        <p class="product-price" data-base-price="18490">&#8377; 18,490</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('SR1002')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('SR1002')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 3 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2002'">
                     <div class="product-media">
                         <img src="./images/image-3.webp" alt="Gold Sequins Embroidered Shimmer">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Gold Sequins Embroidered Shimmer Designer Lehenga with Sweetheart Neck
                         </p>
-                        <p class="product-price">&#8377; 25,000</p>
+                        <p class="product-price" data-base-price="25000">&#8377; 25,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2002')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2002')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 4 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2003'">
                     <div class="product-media">
                         <img src="./images/image-4.webp" alt="Beige Sequins Embroidered Net">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Beige Sequins Embroidered Net Promotional Lehenga with Resham and Stone
                         </p>
-                        <p class="product-price">&#8377; 32,500</p>
+                        <p class="product-price" data-base-price="32500">&#8377; 32,500</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2003')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2003')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 5 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2004'">
                     <div class="product-media">
                         <img src="./images/image-5.webp" alt="Orange Sequins Embroidered Net">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Orange Sequins Embroidered Net Promotional Lehenga with Resham and Stone
                         </p>
-                        <p class="product-price">&#8377; 29,900</p>
+                        <p class="product-price" data-base-price="29900">&#8377; 29,900</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2004')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2004')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 6 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2005'">
                     <div class="product-media">
                         <img src="./images/image-6.webp" alt="Pink Embroidered Lehenga">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Blush Pink Sequins Embroidered Georgette Lehenga with Ruffle Dupatta</p>
-                        <p class="product-price">&#8377; 42,000</p>
+                        <p class="product-price" data-base-price="42000">&#8377; 42,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2005')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2005')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 7 -->
-                <div class="product-card product-card-7">
+                <div class="product-card product-card-7" onclick="window.location.href='product.html?id=AN3001'">
                     <div class="product-media">
                         <img src="./images/image-7.webp" alt="Emerald Green Anarkali">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Emerald Green Zari Embroidered Silk Anarkali Suit with Network Dupatta
                         </p>
-                        <p class="product-price">&#8377; 21,500</p>
+                        <p class="product-price" data-base-price="21500">&#8377; 21,500</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('AN3001')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('AN3001')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -681,12 +759,15 @@
 
 
     <!-- PROMO BANNER SECTION -->
-    <section class="promo-banner-section">
+    <section class="promo-banner-section" style="cursor:pointer"
+        onclick="window.location.href='sarees-collection.html'">
         <div class="promo-banner-overlay"></div>
         <div class="promo-banner-content">
             <h2 class="promo-title">Unlock the world of fashion</h2>
             <div class="promo-divider"></div>
             <p class="promo-subtitle">Your retail destination,<br>just a click away!</p>
+            <a href="sarees-collection.html" class="slide-btn" style="margin-top:20px;display:inline-block"
+                onclick="event.stopPropagation()">SHOP SAREES</a>
         </div>
     </section>
 
@@ -734,106 +815,161 @@
     <!-- TRENDING NOW SECTION -->
     <section class="new-arrivals">
         <div class="new-arrivals-header">
-            <h2 class="section-title-alt">Trending Now </h2>
-            <div class="carousel-nav">
-                <button class="nav-btn prev" id="trendingPrev">&#8249;</button>
-                <button class="nav-btn next" id="trendingNext">&#8250;</button>
-            </div>
+            <h2 class="section-title-alt">Trending Now</h2>
         </div>
-        <div class="carousel-container">
+        <div class="carousel-container trending-scroll-container">
             <div class="carousel-track" id="trendingTrack">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2001'">
                     <div class="product-media">
-                        <img src="./images/image-1.webp" alt="Red Crepe Ready To Wear Saree">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <img src="./images/image-1.webp" alt="Crimson Red Bridal Lehenga">
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
-                        <p class="product-desc">Red Crepe Ready To Wear Saree with Silk Blouse and Embroidery</p>
-                        <p class="product-price">&#8377; 15,990</p>
+                        <p class="product-desc">Crimson Red Umbrella Style Silk Bridal Lehenga with Elbow Sleeve Blouse
+                        </p>
+                        <p class="product-price" data-base-price="51500">&#8377; 51,500</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2001')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2001')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=SR1002'">
                     <div class="product-media">
                         <img src="./images/image-2.webp" alt="Black Lycra Ready To Wear Saree">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Black Lycra Ready To Wear Saree with Embroidered Sleeveless Blouse</p>
-                        <p class="product-price">&#8377; 18,490</p>
+                        <p class="product-price" data-base-price="18490">&#8377; 18,490</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('SR1002')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('SR1002')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 3 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2002'">
                     <div class="product-media">
                         <img src="./images/image-3.webp" alt="Gold Sequins Embroidered Shimmer">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Gold Sequins Embroidered Shimmer Designer Lehenga with Sweetheart Neck
                         </p>
-                        <p class="product-price">&#8377; 25,000</p>
+                        <p class="product-price" data-base-price="25000">&#8377; 25,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2002')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2002')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 4 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2003'">
                     <div class="product-media">
                         <img src="./images/image-4.webp" alt="Beige Sequins Embroidered Net">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Beige Sequins Embroidered Net Promotional Lehenga with Resham and Stone
                         </p>
-                        <p class="product-price">&#8377; 32,500</p>
+                        <p class="product-price" data-base-price="32500">&#8377; 32,500</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2003')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2003')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 5 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=MN4001'">
                     <div class="product-media">
-                        <img src="./images/image-5.webp" alt="Orange Sequins Embroidered Net">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <img src="./images/image-5.webp" alt="Royal Blue Silk Sherwani">
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
-                        <p class="product-desc">Orange Sequins Embroidered Net Promotional Lehenga with Resham and Stone
-                        </p>
-                        <p class="product-price">&#8377; 29,900</p>
+                        <p class="product-desc">Royal Blue Silk Sherwani with Heavy Zardozi Embroidery for Groom</p>
+                        <p class="product-price" data-base-price="45000">&#8377; 45,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('MN4001')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('MN4001')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 6 -->
-                <div class="product-card">
+                <div class="product-card" onclick="window.location.href='product.html?id=LH2005'">
                     <div class="product-media">
                         <img src="./images/image-6.webp" alt="Pink Embroidered Lehenga">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
                         <p class="product-desc">Blush Pink Sequins Embroidered Georgette Lehenga with Ruffle Dupatta</p>
-                        <p class="product-price">&#8377; 42,000</p>
+                        <p class="product-price" data-base-price="42000">&#8377; 42,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('LH2005')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('LH2005')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product 7 -->
-                <div class="product-card product-card-7">
+                <div class="product-card product-card-7" onclick="window.location.href='product.html?id=SR1003'">
                     <div class="product-media">
-                        <img src="./images/image-7.webp" alt="Emerald Green Anarkali">
-                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                        <img src="./images/image-7.webp" alt="Kanchipuram Pure Silk Saree">
+                        <button class="wishlist-btn" onclick="event.stopPropagation()"><i
+                                class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="product-info">
-                        <p class="product-desc">Emerald Green Zari Embroidered Silk Anarkali Suit with Network Dupatta
-                        </p>
-                        <p class="product-price">&#8377; 21,500</p>
+                        <p class="product-desc">Kanchipuram Pure Silk Saree with Zari Border and Pallu</p>
+                        <p class="product-price" data-base-price="35000">&#8377; 35,000</p>
+                        <div class="product-card-actions">
+                            <button class="card-add-to-cart"
+                                onclick="event.stopPropagation(); addToCartFromCard('SR1003')"><i
+                                    class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                            <button class="card-buy-now" onclick="event.stopPropagation(); buyNowFromCard('SR1003')"><i
+                                    class="fa-solid fa-bolt"></i> Buy Now</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- SECOND PROMO BANNER SECTION -->
-    <section class="promo-banner-section promo-banner-2">
+    <section class="promo-banner-section promo-banner-2" style="cursor:pointer"
+        onclick="window.location.href='lehenga-collection.html'">
         <div class="promo-banner-overlay"></div>
         <div class="promo-banner-content">
             <h2 class="promo-title">Elevate Your Style</h2>
             <div class="promo-divider"></div>
             <p class="promo-subtitle">Discover the latest collections,<br>handpicked for you!</p>
+            <a href="lehenga-collection.html" class="slide-btn" style="margin-top:20px;display:inline-block"
+                onclick="event.stopPropagation()">SHOP LEHENGAS</a>
         </div>
     </section>
 
@@ -1104,9 +1240,11 @@
                 <div class="footer-socials">
                     <a href="#" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="social-icon tw"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/_sk_weaves_?igsh=bnc0YzdrcHU3Y3k4" class="social-icon ig"
+                        target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="social-icon pin"><i class="fa-brands fa-pinterest-p"></i></a>
-                    <a href="#" class="social-icon yt"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://youtube.com/@skweaves?si=gNNct7yrLHwCKsIp" class="social-icon yt"
+                        target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 </div>
                 <a href="#" class="footer-whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                 <div class="footer-address">
@@ -1239,7 +1377,6 @@
     <script src="./products-data.js"></script>
     <script src="./store.js"></script>
     <script src="./search.js"></script>
-    <script src="./search.js"></script>
     <script>
         function openLoginModal() {
             document.getElementById('loginModal').classList.add('open');
@@ -1254,6 +1391,58 @@
             const modal = document.getElementById('loginModal');
             if (event.target == modal) {
                 closeLoginModal();
+            }
+            // Close currency dropdown when clicking outside
+            const dd = document.getElementById('currencyDropdown');
+            const selector = document.getElementById('currencySelector');
+            if (dd && selector && !selector.contains(event.target)) {
+                dd.classList.remove('open');
+            }
+        }
+
+        // ── Currency switcher ──
+        let currentSymbol = '₹';
+        let currentRate = 1;
+        let currentCurrencyCode = 'INR';
+
+        function toggleCurrencyDropdown(e) {
+            e.stopPropagation();
+            const dd = document.getElementById('currencyDropdown');
+            dd.classList.toggle('open');
+        }
+
+        function selectCurrency(e, code, symbol, rate) {
+            e.stopPropagation();
+            currentSymbol = symbol;
+            currentRate = rate;
+            currentCurrencyCode = code;
+            document.getElementById('currencyLabel').textContent = code;
+            // Update all prices on page
+            document.querySelectorAll('.product-price[data-base-price]').forEach(function (el) {
+                const base = parseFloat(el.getAttribute('data-base-price'));
+                const converted = (base * rate).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+                el.textContent = symbol + ' ' + converted;
+            });
+            // Mark active option
+            document.querySelectorAll('.currency-option').forEach(function (opt) {
+                opt.classList.toggle('active', opt.dataset.currency === code);
+            });
+            document.getElementById('currencyDropdown').classList.remove('open');
+        }
+
+        // ── Add to Cart from card ──
+        function addToCartFromCard(productId) {
+            if (window.TMStore) {
+                window.TMStore.addToCart(productId, 'FREE', 1);
+            }
+        }
+
+        function buyNowFromCard(productId) {
+            if (window.TMStore) {
+                window.TMStore.addToCart(productId, 'FREE', 1);
+                window.TMStore.goToCheckout ? window.TMStore.goToCheckout() : (window.location.href = 'product.html?id=' + productId);
+            } else {
+                window.location.href = 'product.html?id=' + productId;
             }
         }
     </script>

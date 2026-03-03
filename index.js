@@ -12,6 +12,8 @@
     const DESKTOP_INTERVAL = 4500;
     const MOBILE_INTERVAL = 2000;
 
+    if (!prevBtn || !nextBtn || slides.length === 0) return;
+
     // Slide destination URLs (one per slide)
     const slideLinks = [
         'collection.html',
@@ -109,63 +111,28 @@
 
 
 // ===========================
-//  NEW ARRIVALS CAROUSEL
+//  NEW ARRIVALS CAROUSEL — Auto-scroll, no buttons
 // ===========================
 (function () {
-    const track = document.getElementById('arrivalsTrack');
-    const prevBtn = document.getElementById('arrivalsPrev');
-    const nextBtn = document.getElementById('arrivalsNext');
+    const container = document.querySelector('.arrivals-scroll-container');
+    if (!container) return;
 
-    if (!track) return;
-
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-
-    // --- Desktop: button-based scroll ---
-    let scrollAmount = 0;
-    const cardWidth = 260 + 20;
-
-    if (prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-            if (scrollAmount < maxScroll) {
-                scrollAmount += cardWidth;
-                if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-                track.style.transform = `translateX(-${scrollAmount}px)`;
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (scrollAmount > 0) {
-                scrollAmount -= cardWidth;
-                if (scrollAmount < 0) scrollAmount = 0;
-                track.style.transform = `translateX(-${scrollAmount}px)`;
-            }
-        });
-    }
-
-    // --- Mobile: native scroll auto-play ---
-    const container = track.parentElement;
     let autoTimer = null;
     let userScrolling = false;
     let userScrollTimeout = null;
 
     function autoScrollStep() {
-        if (!isMobile() || !container) return;
         const maxScroll = container.scrollWidth - container.clientWidth;
         if (container.scrollLeft >= maxScroll - 2) {
             container.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-            container.scrollBy({ left: 172, behavior: 'smooth' });
+            container.scrollBy({ left: 280, behavior: 'smooth' });
         }
     }
 
     function startAutoScroll() {
         stopAutoScroll();
-        if (isMobile()) {
-            autoTimer = setInterval(autoScrollStep, 2000);
-        }
+        autoTimer = setInterval(autoScrollStep, 2800);
     }
 
     function stopAutoScroll() {
@@ -173,102 +140,54 @@
         autoTimer = null;
     }
 
-    // Pause auto-scroll when user touches/scrolls
-    if (container) {
-        container.addEventListener('touchstart', function () {
-            userScrolling = true;
-            stopAutoScroll();
-        }, { passive: true });
+    // Pause on user interaction (mouse or touch)
+    container.addEventListener('touchstart', function () {
+        userScrolling = true;
+        stopAutoScroll();
+    }, { passive: true });
 
-        container.addEventListener('touchend', function () {
-            clearTimeout(userScrollTimeout);
-            userScrollTimeout = setTimeout(function () {
-                userScrolling = false;
-                startAutoScroll();
-            }, 3000);
-        }, { passive: true });
-
-        container.addEventListener('scroll', function () {
-            if (!userScrolling) return;
-            stopAutoScroll();
-            clearTimeout(userScrollTimeout);
-            userScrollTimeout = setTimeout(function () {
-                userScrolling = false;
-                startAutoScroll();
-            }, 3000);
-        }, { passive: true });
-    }
-
-    // Start on load and adjust on resize
-    window.addEventListener('resize', function () {
-        if (isMobile()) {
+    container.addEventListener('touchend', function () {
+        clearTimeout(userScrollTimeout);
+        userScrollTimeout = setTimeout(function () {
+            userScrolling = false;
             startAutoScroll();
-        } else {
-            stopAutoScroll();
-        }
+        }, 3000);
+    }, { passive: true });
+
+    container.addEventListener('mouseenter', function () {
+        stopAutoScroll();
     });
 
-    if (isMobile()) startAutoScroll();
+    container.addEventListener('mouseleave', function () {
+        startAutoScroll();
+    });
+
+    // Kick off
+    startAutoScroll();
 })();
 
+
 // ===========================
-//  TRENDING NOW CAROUSEL
+//  TRENDING NOW CAROUSEL — Auto-scroll, no buttons
 // ===========================
 (function () {
-    const track = document.getElementById('trendingTrack');
-    const prevBtn = document.getElementById('trendingPrev');
-    const nextBtn = document.getElementById('trendingNext');
+    const container = document.querySelector('.trending-scroll-container');
+    if (!container) return;
 
-    if (!track) return;
-
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-
-    // --- Desktop: button-based scroll ---
-    let scrollAmount = 0;
-    const cardWidth = 260 + 20;
-
-    if (prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
-            if (scrollAmount < maxScroll) {
-                scrollAmount += cardWidth;
-                if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-                track.style.transform = `translateX(-${scrollAmount}px)`;
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (scrollAmount > 0) {
-                scrollAmount -= cardWidth;
-                if (scrollAmount < 0) scrollAmount = 0;
-                track.style.transform = `translateX(-${scrollAmount}px)`;
-            }
-        });
-    }
-
-    // --- Mobile: native scroll auto-play ---
-    const container = track.parentElement;
     let autoTimer = null;
-    let userScrolling = false;
-    let userScrollTimeout = null;
 
     function autoScrollStep() {
-        if (!isMobile() || !container) return;
         const maxScroll = container.scrollWidth - container.clientWidth;
         if (container.scrollLeft >= maxScroll - 2) {
             container.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-            container.scrollBy({ left: 172, behavior: 'smooth' });
+            container.scrollBy({ left: 280, behavior: 'smooth' });
         }
     }
 
     function startAutoScroll() {
         stopAutoScroll();
-        if (isMobile()) {
-            autoTimer = setInterval(autoScrollStep, 2000);
-        }
+        autoTimer = setInterval(autoScrollStep, 2800);
     }
 
     function stopAutoScroll() {
@@ -276,41 +195,20 @@
         autoTimer = null;
     }
 
-    if (container) {
-        container.addEventListener('touchstart', function () {
-            userScrolling = true;
-            stopAutoScroll();
-        }, { passive: true });
+    container.addEventListener('mouseenter', stopAutoScroll);
+    container.addEventListener('mouseleave', startAutoScroll);
 
-        container.addEventListener('touchend', function () {
-            clearTimeout(userScrollTimeout);
-            userScrollTimeout = setTimeout(function () {
-                userScrolling = false;
-                startAutoScroll();
-            }, 3000);
-        }, { passive: true });
+    container.addEventListener('touchstart', function () {
+        stopAutoScroll();
+    }, { passive: true });
 
-        container.addEventListener('scroll', function () {
-            if (!userScrolling) return;
-            stopAutoScroll();
-            clearTimeout(userScrollTimeout);
-            userScrollTimeout = setTimeout(function () {
-                userScrolling = false;
-                startAutoScroll();
-            }, 3000);
-        }, { passive: true });
-    }
+    container.addEventListener('touchend', function () {
+        setTimeout(startAutoScroll, 3000);
+    }, { passive: true });
 
-    window.addEventListener('resize', function () {
-        if (isMobile()) {
-            startAutoScroll();
-        } else {
-            stopAutoScroll();
-        }
-    });
-
-    if (isMobile()) startAutoScroll();
+    startAutoScroll();
 })();
+
 
 // ===========================
 //  WISHLIST FUNCTIONALITY

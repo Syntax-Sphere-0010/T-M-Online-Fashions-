@@ -393,61 +393,38 @@
         </header>
     </div><!-- end .sticky-top-bar -->
 
-    <!-- MOBILE TAB BAR (mobile only) -->
-    <div class="mobile-tab-bar">
-        <a href="women-collection.html" class="mobile-tab active">WOMEN</a>
-        <a href="men-collection.html" class="mobile-tab">MEN</a>
-        <a href="sarees-collection.html" class="mobile-tab">BRIDAL</a>
+
+    <!-- WISHLIST PAGE CONTENT -->
+    <div class="wl-page">
+
+        <!-- CART SUMMARY CARD -->
+        <div class="wl-cart-card" id="wlCartCard" style="display:none;">
+            <div class="wl-cart-left">
+                <h3 class="wl-cart-title" id="wlCartTitle">Cart (0)</h3>
+                <div class="wl-cart-items" id="wlCartItems"></div>
+            </div>
+            <div class="wl-cart-right">
+                <div class="wl-subtotal-row">
+                    <span class="wl-subtotal-label">Subtotal</span>
+                    <span class="wl-subtotal-amount" id="wlSubtotal">₹ 0</span>
+                </div>
+                <button class="wl-checkout-btn" onclick="document.getElementById('cartDrawerBackdrop').click();">
+                    Continue to checkout
+                </button>
+                <p class="wl-checkout-note">Taxes &amp; shipping calculated at checkout</p>
+            </div>
+        </div>
+
+        <!-- WISHLIST HEADING -->
+        <div class="wl-heading-row">
+            <h2 class="wl-heading">Wishlist <i class="fa-solid fa-chevron-right" style="font-size:14px;"></i></h2>
+            <span class="wl-item-count" id="wlItemCount"></span>
+        </div>
+
+        <!-- WISHLIST GRID -->
+        <div class="wl-grid" id="wlGrid"></div>
+
     </div>
-
-    <!-- MOBILE CATEGORY CIRCLES (mobile only) -->
-    <div class="mobile-category-circles">
-        <a href="sarees-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-1.webp" alt="What's New">
-            </div>
-            <span class="category-circle-label">What's New</span>
-        </a>
-        <a href="sarees-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-2.webp" alt="Sarees">
-            </div>
-            <span class="category-circle-label">Sarees</span>
-        </a>
-        <a href="sarees-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-3.webp" alt="Salwar Kameez">
-            </div>
-            <span class="category-circle-label">Salwar Kameez</span>
-        </a>
-        <a href="lehenga-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-4.webp" alt="Lehenga">
-            </div>
-            <span class="category-circle-label">Lehenga</span>
-        </a>
-        <a href="women-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-5.webp" alt="Gowns">
-            </div>
-            <span class="category-circle-label">Gowns</span>
-        </a>
-        <a href="men-collection.html" class="category-circle">
-            <div class="category-circle-img">
-                <img src="./images/image-6.webp" alt="Men's Wear">
-            </div>
-            <span class="category-circle-label">Men's</span>
-        </a>
-    </div>
-
-    <!-- WISHLIST HERO -->
-    <section class="wishlist-hero">
-        <h1><i class="fa-regular fa-heart" style="color:#e53935;margin-right:8px"></i> My Wishlist</h1>
-        <p id="wishlistSubtitle">Your saved items will appear here</p>
-    </section>
-
-    <!-- WISHLIST GRID -->
-    <div class="collection-products-grid" id="wishlistGrid"></div>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -527,80 +504,140 @@
             window.addEventListener('resize', function () { if (window.innerWidth > 768) closeDrawer(); });
         })();
 
-        // Render wishlist items
+        // ── Wishlist Page Init ───────────────────────
         document.addEventListener('DOMContentLoaded', function () {
-            renderWishlist();
+            renderWLPage();
         });
 
-        function renderWishlist() {
-            var grid = document.getElementById('wishlistGrid');
-            var subtitle = document.getElementById('wishlistSubtitle');
+        function fmtWLPrice(n) {
+            return '₹\u00a0' + Number(n).toLocaleString('en-IN');
+        }
+
+        function renderWLPage() {
+            renderWLCart();
+            renderWLGrid();
+        }
+
+        // ── Cart summary card ────────────────────────
+        function renderWLCart() {
+            var card = document.getElementById('wlCartCard');
+            var itemsEl = document.getElementById('wlCartItems');
+            var titleEl = document.getElementById('wlCartTitle');
+            var totalEl = document.getElementById('wlSubtotal');
+            if (!card || !itemsEl) return;
+
+            var cart = [];
+            try { cart = JSON.parse(localStorage.getItem('tm_cart')) || []; } catch (e) { }
+
+            if (!cart.length) { card.style.display = 'none'; return; }
+            card.style.display = 'flex';
+
+            if (titleEl) titleEl.textContent = 'Cart (' + cart.length + ')';
+
+            var total = 0;
+            var html = '';
+            cart.forEach(function (item) {
+                var p = window.ProductsCatalog && window.ProductsCatalog.find(function (x) { return x.id === item.id; });
+                if (!p) return;
+                var subtotal = p.price * (item.qty || 1);
+                total += subtotal;
+                html += '<div class="wl-cart-item" data-id="' + item.id + '">' +
+                    '<img src="' + p.images[0] + '" alt="' + p.name + '" class="wl-ci-img">' +
+                    '<div class="wl-ci-info">' +
+                    '<p class="wl-ci-name">' + p.name + '</p>' +
+                    '<p class="wl-ci-sub">' + (item.size || 'Free Size') + '</p>' +
+                    '<div class="wl-ci-controls">' +
+                    '<button class="wl-ci-btn wl-del" data-id="' + item.id + '" onclick="wlRemoveCart(this)"><i class="fa-regular fa-trash-can"></i></button>' +
+                    '<button class="wl-ci-btn wl-dec" data-id="' + item.id + '" onclick="wlChangeQty(this,-1)">−</button>' +
+                    '<span class="wl-ci-qty">' + (item.qty || 1) + '</span>' +
+                    '<button class="wl-ci-btn wl-inc" data-id="' + item.id + '" onclick="wlChangeQty(this,1)">+</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '<span class="wl-ci-price">' + fmtWLPrice(subtotal) + '</span>' +
+                    '</div>';
+            });
+            itemsEl.innerHTML = html;
+            if (totalEl) totalEl.textContent = fmtWLPrice(total);
+        }
+
+        function wlRemoveCart(btn) {
+            var id = btn.dataset.id;
+            var cart = [];
+            try { cart = JSON.parse(localStorage.getItem('tm_cart')) || []; } catch (e) { }
+            cart = cart.filter(function (i) { return i.id !== id; });
+            localStorage.setItem('tm_cart', JSON.stringify(cart));
+            if (window.TMStore && TMStore.updateCartBadge) TMStore.updateCartBadge();
+            renderWLCart();
+        }
+
+        function wlChangeQty(btn, delta) {
+            var id = btn.dataset.id;
+            var cart = [];
+            try { cart = JSON.parse(localStorage.getItem('tm_cart')) || []; } catch (e) { }
+            var item = cart.find(function (i) { return i.id === id; });
+            if (item) {
+                item.qty = Math.max(1, (item.qty || 1) + delta);
+                localStorage.setItem('tm_cart', JSON.stringify(cart));
+                if (window.TMStore && TMStore.updateCartBadge) TMStore.updateCartBadge();
+            }
+            renderWLCart();
+        }
+
+        // ── Wishlist grid ────────────────────────────
+        function renderWLGrid() {
+            var grid = document.getElementById('wlGrid');
+            var countEl = document.getElementById('wlItemCount');
             if (!grid || !window.ProductsCatalog) return;
 
-            var wishlist = [];
-            try { wishlist = JSON.parse(localStorage.getItem('tm_wishlist')) || []; } catch (e) { }
+            var wl = [];
+            try { wl = JSON.parse(localStorage.getItem('tm_wishlist')) || []; } catch (e) { }
 
-            if (wishlist.length === 0) {
-                grid.innerHTML = '<div class="wishlist-empty">' +
-                    '<i class="fa-regular fa-heart"></i>' +
-                    '<p>Your wishlist is empty</p>' +
-                    '<a href="women-collection.html">EXPLORE COLLECTIONS</a>' +
-                    '</div>';
-                if (subtitle) subtitle.textContent = '0 items saved';
-                return;
-            }
+            var products = window.ProductsCatalog.filter(function (p) { return wl.indexOf(p.id) > -1; });
 
-            var products = window.ProductsCatalog.filter(function (p) {
-                return wishlist.indexOf(p.id) > -1;
-            });
+            if (countEl) countEl.textContent = products.length + ' items';
 
-            if (subtitle) subtitle.textContent = products.length + ' items saved';
-
-            if (products.length === 0) {
-                grid.innerHTML = '<div class="wishlist-empty">' +
-                    '<i class="fa-regular fa-heart"></i>' +
-                    '<p>Your wishlist is empty</p>' +
-                    '<a href="women-collection.html">EXPLORE COLLECTIONS</a>' +
-                    '</div>';
+            if (!products.length) {
+                grid.innerHTML = '<div class="wl-empty"><i class="fa-regular fa-heart"></i><h3>Your wishlist is empty</h3><p>Save items you love and find them here.</p><a href="women-collection.html" class="wl-shop-btn">Explore Collections</a></div>';
                 return;
             }
 
             var html = '';
             products.forEach(function (p) {
-                var compareHtml = p.compareAtPrice
-                    ? '<span class="grid-compare-price">₹ ' + Number(p.compareAtPrice).toLocaleString('en-IN') + '</span>'
-                    : '';
-                html += '<div class="grid-product-card" style="position:relative;" data-id="' + p.id + '">' +
-                    '<a href="product.html?id=' + p.id + '">' +
-                    '<div class="grid-product-img">' +
-                    '<img src="' + p.images[0] + '" alt="' + p.name + '" loading="lazy">' +
-                    '</div>' +
-                    '</a>' +
-                    '<button class="wishlist-remove-btn" data-id="' + p.id + '" title="Remove">' +
-                    '<i class="fa-solid fa-xmark"></i>' +
+                var disc = p.compareAtPrice ? Math.round((1 - p.price / p.compareAtPrice) * 100) : 0;
+                var img2 = p.images[1] || p.images[0];
+                html += '<div class="wl-card" onclick="window.location.href=\'product.html?id=' + p.id + '\'"> ' +
+                    '<div class="wl-card-media">' +
+                    '<img class="wl-img wl-img-a" src="' + p.images[0] + '" alt="' + p.name + '" loading="lazy">' +
+                    '<img class="wl-img wl-img-b" src="' + img2 + '" alt="' + p.name + '" loading="lazy">' +
+                    (disc ? '<span class="wl-card-badge">' + disc + '% OFF</span>' : '') +
+                    '<div class="wl-card-overlay">' +
+                    '<button class="wl-quick-btn" onclick="event.stopPropagation();window.location.href=\'product.html?id=' + p.id + '\'">' +
+                    '<i class="fa-solid fa-bag-shopping"></i> Quick View' +
                     '</button>' +
-                    '<div class="grid-product-info">' +
-                    '<a href="product.html?id=' + p.id + '" style="text-decoration:none;color:inherit;">' +
-                    '<p class="grid-product-name">' + p.name + '</p>' +
-                    '</a>' +
-                    '<div class="grid-product-pricing">' +
-                    '<span class="grid-product-price">₹ ' + Number(p.price).toLocaleString('en-IN') + '</span>' +
-                    compareHtml +
+                    '</div>' +
+                    '<button class="wl-heart-btn wl-hearted" data-id="' + p.id + '" onclick="event.stopPropagation();wlToggle(this,\'' + p.id + '\')" title="Remove from wishlist">' +
+                    '<i class="fa-solid fa-heart"></i>' +
+                    '</button>' +
+                    '</div>' +
+                    '<div class="wl-card-info">' +
+                    '<p class="wl-card-sub">' + p.subcategory + '</p>' +
+                    '<p class="wl-card-name">' + p.name + '</p>' +
+                    '<div class="wl-card-pricing">' +
+                    '<span class="wl-price">' + fmtWLPrice(p.price) + '</span>' +
+                    (p.compareAtPrice ? '<span class="wl-compare">' + fmtWLPrice(p.compareAtPrice) + '</span>' : '') +
                     '</div>' +
                     '</div>' +
                     '</div>';
             });
-
             grid.innerHTML = html;
+        }
 
-            // Remove buttons
-            grid.querySelectorAll('.wishlist-remove-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var id = this.dataset.id;
-                    if (window.TMStore) window.TMStore.toggleWishlist(id);
-                    renderWishlist();
-                });
-            });
+        function wlToggle(btn, id) {
+            if (window.TMStore) window.TMStore.toggleWishlist(id);
+            // animate removal
+            var card = btn.closest('.wl-card');
+            if (card) { card.style.opacity = '0'; card.style.transform = 'scale(0.9)'; }
+            setTimeout(function () { renderWLGrid(); }, 300);
         }
     </script>
     \n <!-- LOGIN MODAL -->
