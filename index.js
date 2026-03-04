@@ -211,42 +211,80 @@
 
 
 // ===========================
-//  WISHLIST FUNCTIONALITY
+//  WISHLIST FUNCTIONALITY (Homepage)
 // ===========================
 (function () {
-    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
-    const wishlistCountBadge = document.getElementById('wishlistCount');
-    let count = 0;
+    // Helper: read wishlist from localStorage (mirrors TMStore logic)
+    function getWishlistIds() {
+        try {
+            return JSON.parse(localStorage.getItem('tm_wishlist')) || [];
+        } catch (e) {
+            return [];
+        }
+    }
 
-    if (!wishlistCountBadge) return;
+    function saveWishlistIds(ids) {
+        localStorage.setItem('tm_wishlist', JSON.stringify(ids));
+    }
 
-    wishlistBtns.forEach(btn => {
+    function updateBadge() {
+        // Prefer TMStore if available (already loaded via store.js)
+        if (window.TMStore) {
+            window.TMStore.updateWishlistBadge();
+        } else {
+            var count = getWishlistIds().length;
+            var badge = document.getElementById('wishlistCount');
+            if (badge) {
+                badge.textContent = count;
+                badge.classList.toggle('show', count > 0);
+            }
+        }
+    }
+
+    // Initialise all wishlist buttons on the homepage
+    document.querySelectorAll('.wishlist-btn').forEach(function (btn) {
+        var productId = btn.dataset.id;
+        var icon = btn.querySelector('i');
+        if (!icon) return;
+
+        // Set initial icon state from persisted data
+        var inWishlist = productId
+            ? (window.TMStore ? window.TMStore.isInWishlist(productId) : getWishlistIds().indexOf(productId) > -1)
+            : false;
+
+        if (inWishlist) {
+            icon.classList.replace('fa-regular', 'fa-solid');
+            icon.style.color = '#ff3b3b';
+            btn.classList.add('active');
+        }
+
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
-            const icon = this.querySelector('i');
+            var id = this.dataset.id;
+            var added;
 
-            this.classList.toggle('active');
-
-            if (this.classList.contains('active')) {
-                // Change to solid heart
-                icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid');
-                count++;
+            if (window.TMStore) {
+                added = window.TMStore.toggleWishlist(id);
             } else {
-                // Change to regular heart
-                icon.classList.remove('fa-solid');
-                icon.classList.add('fa-regular');
-                count--;
+                var ids = getWishlistIds();
+                var idx = ids.indexOf(id);
+                if (idx > -1) { ids.splice(idx, 1); added = false; }
+                else { ids.push(id); added = true; }
+                saveWishlistIds(ids);
+                updateBadge();
             }
 
-            // Update badge
-            wishlistCountBadge.textContent = count;
-            if (count > 0) {
-                wishlistCountBadge.classList.add('show');
+            var btnIcon = this.querySelector('i');
+            if (added) {
+                btnIcon.classList.replace('fa-regular', 'fa-solid');
+                btnIcon.style.color = '#ff3b3b';
+                this.classList.add('active');
             } else {
-                wishlistCountBadge.classList.remove('show');
+                btnIcon.classList.replace('fa-solid', 'fa-regular');
+                btnIcon.style.color = '';
+                this.classList.remove('active');
             }
         });
     });
