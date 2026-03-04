@@ -73,6 +73,9 @@
         var img = p.images[0];
         var img2 = p.images[1] || img;
         var disc = p.compareAtPrice ? Math.round((1 - p.price / p.compareAtPrice) * 100) : 0;
+        var isWishlisted = window.TMStore ? window.TMStore.isInWishlist(p.id) : false;
+        var heartClass = isWishlisted ? 'fa-solid' : 'fa-regular';
+        var heartStyle = isWishlisted ? 'color: #ff3b3b;' : '';
 
         return `
         <div class="clp-card" onclick="window.location.href='product.html?id=${p.id}'">
@@ -80,11 +83,14 @@
                 <img class="clp-img clp-img-a" src="${img}"  alt="${p.name}" loading="lazy">
                 <img class="clp-img clp-img-b" src="${img2}" alt="${p.name}" loading="lazy">
                 ${disc ? `<span class="clp-badge">${disc}% OFF</span>` : ''}
+                
+                <button class="clp-action-btn clp-wish-btn" title="Wishlist"
+                        style="background: transparent !important; box-shadow: none !important; font-size: 22px; border: none; padding: 4px; color: #1a1a1a; width: auto; height: auto;"
+                        onclick="event.stopPropagation(); if(window.TMStore) { var added = window.TMStore.toggleWishlist('${p.id}'); var icon = this.querySelector('i'); if(added){ icon.classList.replace('fa-regular', 'fa-solid'); icon.style.color='#ff3b3b'; } else { icon.classList.replace('fa-solid', 'fa-regular'); icon.style.color=''; } }">
+                    <i class="${heartClass} fa-heart" style="${heartStyle}"></i>
+                </button>
+                    
                 <div class="clp-card-overlay-actions">
-                    <button class="clp-action-btn clp-wish-btn" title="Wishlist"
-                        onclick="event.stopPropagation(); if(window.TMStore) window.TMStore.toggleWishlist('${p.id}', this)">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
                     <button class="clp-action-btn clp-cart-quick-btn" title="Quick Add"
                         onclick="event.stopPropagation(); if(window.TMStore){ window.TMStore.addToCart('${p.id}', 'FREE', 1); this.innerHTML='<i class=\\'fa-solid fa-check\\'></i>'; setTimeout(()=>{ this.innerHTML='<i class=\\'fa-solid fa-bag-shopping\\'></i>'; }, 1800); }">
                         <i class="fa-solid fa-bag-shopping"></i>
@@ -236,11 +242,18 @@
             var minEl = document.getElementById('clpMinPrice');
             var maxEl = document.getElementById('clpMaxPrice');
             var srEl = document.getElementById('clpSearch');
-            var srtEl = document.getElementById('clpSort');
             if (minEl) minEl.value = '';
             if (maxEl) maxEl.value = '';
             if (srEl) srEl.value = '';
-            if (srtEl) srtEl.value = 'default';
+            // Reset custom dropdown label
+            var label = document.getElementById('clpSortLabel');
+            if (label) label.textContent = 'Featured';
+            var sortMenu = document.getElementById('clpSortMenu');
+            if (sortMenu) {
+                sortMenu.querySelectorAll('li').forEach(function (el) { el.classList.remove('active'); });
+                var def = sortMenu.querySelector('li[data-val="default"]');
+                if (def) def.classList.add('active');
+            }
             document.querySelectorAll('.clp-filter-link').forEach(function (a) { a.classList.remove('active'); });
             var allLink = document.querySelector('.clp-filter-link:not([data-subcat])');
             if (allLink) allLink.classList.add('active');
@@ -277,11 +290,26 @@
         // Build sidebar
         buildFilters(_state.allProducts, cfg);
 
-        // Wire sort
-        var sortEl = document.getElementById('clpSort');
-        if (sortEl) sortEl.addEventListener('change', function () {
-            CollectionPage.setSort(this.value);
-        });
+        // Wire custom sort dropdown
+        var sortMenu = document.getElementById('clpSortMenu');
+        if (sortMenu) {
+            sortMenu.querySelectorAll('li').forEach(function (li) {
+                li.addEventListener('click', function () {
+                    var val = this.dataset.val;
+                    // Update label
+                    var label = document.getElementById('clpSortLabel');
+                    if (label) label.textContent = this.textContent;
+                    // Update active class
+                    sortMenu.querySelectorAll('li').forEach(function (el) { el.classList.remove('active'); });
+                    this.classList.add('active');
+                    // Close dropdown
+                    var wrap = document.getElementById('clpSortWrap');
+                    if (wrap) wrap.classList.remove('open');
+                    // Apply sort
+                    CollectionPage.setSort(val);
+                });
+            });
+        }
 
         // Wire search
         var searchEl = document.getElementById('clpSearch');
@@ -297,4 +325,54 @@
         applyAll();
     });
 
+})();
+
+/* ── Global custom sort dropdown toggle ── */
+function clpToggleSort(e) {
+    e.stopPropagation();
+    var wrap = document.getElementById('clpSortWrap');
+    if (wrap) wrap.classList.toggle('open');
+}
+
+/* Close on outside click */
+document.addEventListener('click', function (e) {
+    var wrap = document.getElementById('clpSortWrap');
+    if (wrap && !wrap.contains(e.target)) {
+        wrap.classList.remove('open');
+    }
+});
+
+// ===========================
+//  MOBILE NAV DRAWER TOGGLE
+// ===========================
+(function () {
+    const hamburger = document.getElementById('hamburgerToggle');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const backdrop = document.getElementById('mobileNavBackdrop');
+    const closeBtn = document.getElementById('mobileNavClose');
+
+    if (!hamburger || !drawer || !backdrop || !closeBtn) return;
+
+    function openDrawer() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Close drawer on resize above mobile
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            closeDrawer();
+        }
+    });
 })();

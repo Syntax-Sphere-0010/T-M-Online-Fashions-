@@ -16,12 +16,12 @@
 
     // Slide destination URLs (one per slide)
     const slideLinks = [
-        'collection.html',
-        'collection.html',
-        'collection.html',
-        'collection.html',
-        'collection.html',
-        'collection.html'
+        'lehenga-collection.html',
+        'sarees-collection.html',
+        'sarees-collection.html',
+        'sarees-collection.html',
+        'women-collection.html',
+        'women-collection.html'
     ];
 
     function isMobile() {

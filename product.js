@@ -279,12 +279,33 @@ function renderProductInfo(product) {
 
     // --- Wishlist toggle with animation ---
     const wishBtn = document.getElementById('pdpWishlistBtn');
-    let wishlisted = false;
+
+    // Check initial state
+    let isWishlistedLocally = false;
+    if (window.TMStore) {
+        isWishlistedLocally = window.TMStore.isInWishlist(product.id);
+    }
+
+    // Set initial icon state
+    if (isWishlistedLocally) {
+        wishBtn.classList.add('active');
+        const icon = wishBtn.querySelector('i');
+        icon.classList.replace('fa-regular', 'fa-solid');
+        icon.style.color = '#e63946';
+    }
+
     wishBtn.addEventListener('click', function () {
-        wishlisted = !wishlisted;
+        let added = !isWishlistedLocally;
+        if (window.TMStore) {
+            added = window.TMStore.toggleWishlist(product.id);
+        } else {
+            added = !isWishlistedLocally;
+        }
+        isWishlistedLocally = added;
+
         const icon = this.querySelector('i');
-        this.classList.toggle('active', wishlisted);
-        if (wishlisted) {
+        this.classList.toggle('active', added);
+        if (added) {
             icon.classList.replace('fa-regular', 'fa-solid');
             icon.style.color = '#e63946';
             // Pulse animation
@@ -417,11 +438,16 @@ function renderRelatedProducts(products) {
     const el = document.getElementById('pdpRelated');
     if (!el) return;
 
-    const cards = products.map(p => `
+    const cards = products.map(p => {
+        var isWishlisted = false;
+        if (window.TMStore) isWishlisted = window.TMStore.isInWishlist(p.id);
+        var heartClass = isWishlisted ? 'fa-solid' : 'fa-regular';
+        var heartStyle = isWishlisted ? ' style="color:#ff3b3b"' : '';
+        return `
         <div class="pdp-related-card" onclick="window.location.href='${p.link}'" style="cursor:pointer">
             <div class="pdp-related-img">
                 <img src="${p.image}" alt="${p.name}" loading="lazy">
-                <button class="wishlist-btn pdp-related-wishlist" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
+                <button class="wishlist-btn pdp-related-wishlist" data-id="${p.id}" onclick="event.stopPropagation()"><i class="${heartClass} fa-heart"${heartStyle}></i></button>
             </div>
             <div class="pdp-related-info">
                 <p class="pdp-related-name">${p.name}</p>
@@ -432,7 +458,8 @@ function renderRelatedProducts(products) {
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
     el.innerHTML = `
         <div class="pdp-related-container">
@@ -452,12 +479,21 @@ function renderRelatedProducts(products) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            this.classList.toggle('active');
+            var id = this.dataset.id;
+            var added = false;
+            if (window.TMStore) {
+                added = window.TMStore.toggleWishlist(id);
+            } else {
+                this.classList.toggle('active');
+                added = this.classList.contains('active');
+            }
             const icon = this.querySelector('i');
-            if (this.classList.contains('active')) {
+            if (added) {
+                this.classList.add('active');
                 icon.classList.replace('fa-regular', 'fa-solid');
                 icon.style.color = '#ff3b3b';
             } else {
+                this.classList.remove('active');
                 icon.classList.replace('fa-solid', 'fa-regular');
                 icon.style.color = '';
             }

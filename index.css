@@ -5980,7 +5980,7 @@ button {
     gap: 12px;
     padding: 20px 32px 16px;
     border-bottom: 1px solid var(--border);
-    background: #fff;
+    background: transparent;
     position: sticky;
     top: 80px;
     z-index: 10;
@@ -5996,11 +5996,14 @@ button {
 .clp-search-input {
     border: none;
     border-bottom: 1.5px solid var(--border);
-    padding: 6px 10px 6px 2px;
+    padding: 6px 10px 6px 26px;
     font-size: 13px;
     font-family: 'Inter', sans-serif;
     width: 200px;
     background: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 4px center;
     outline: none;
     color: var(--dark);
     transition: border-color 0.2s;
@@ -6012,29 +6015,92 @@ button {
 
 .clp-search-input::placeholder {
     color: #bbb;
+    font-size: 12.5px;
 }
 
-.clp-sort-select {
+/* ── Custom Sort Dropdown ── */
+.clp-sort-wrap {
+    position: relative;
+    user-select: none;
+}
+
+.clp-sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
     border: none;
     border-bottom: 1.5px solid var(--border);
-    padding: 6px 8px 6px 4px;
+    padding: 6px 4px;
     font-size: 13px;
     font-family: 'Inter', sans-serif;
-    background: transparent;
     color: var(--dark);
     cursor: pointer;
     outline: none;
-    transition: border-color 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-    padding-right: 22px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 4px center;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 
-.clp-sort-select:focus {
+.clp-sort-btn:hover {
     border-bottom-color: var(--gold);
+    color: var(--gold);
+}
+
+.clp-sort-chevron {
+    font-size: 10px;
+    transition: transform 0.25s ease;
+}
+
+.clp-sort-wrap.open .clp-sort-chevron {
+    transform: rotate(180deg);
+}
+
+.clp-sort-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 175px;
+    background: rgba(26, 26, 26, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 200;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(184, 134, 11, 0.25);
+}
+
+.clp-sort-wrap.open .clp-sort-menu {
+    display: block;
+}
+
+.clp-sort-menu li {
+    padding: 11px 20px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    letter-spacing: 0.1px;
+    border-left: 2px solid transparent;
+}
+
+.clp-sort-menu li:hover {
+    background: rgba(184, 134, 11, 0.12);
+    color: var(--gold);
+    border-left-color: var(--gold);
+}
+
+.clp-sort-menu li.active {
+    background: rgba(184, 134, 11, 0.18);
+    color: var(--gold);
+    font-weight: 600;
+    border-left-color: var(--gold);
 }
 
 .clp-filter-toggle-btn {
