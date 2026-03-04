@@ -1018,6 +1018,40 @@ button {
     }
 }
 
+/* Cart icon button on product image (bottom-right) */
+.card-cart-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.75);
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.product-card:hover .card-cart-icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-cart-icon:hover {
+    background: var(--gold);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
 .product-info {
     text-align: left;
 }
